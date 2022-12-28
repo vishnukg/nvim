@@ -55,11 +55,14 @@ return packer.startup(function(use)
 
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate'})
 
-    use('nvim-treesitter/playground')
+    use "nvim-treesitter/playground"
 
-    use('mbbill/undotree')
+    use "mbbill/undotree"
 
-    use('tpope/vim-fugitive')
+    use "tpope/vim-fugitive"
+
+    -- Colorscheme
+    use "lunarvim/darkplus.nvim"
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
