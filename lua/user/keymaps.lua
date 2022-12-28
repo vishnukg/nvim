@@ -24,3 +24,9 @@ keymap("n","<leader><leader>", ":wa<cr>",opts)
 
 -- This unsets the last search pattern register by hitten return
 keymap("n","<C-l>",":noh<cr><C-l>",opts)
+
+-- Disable the use of arrow keys in normal mode
+keymap("n","<Left>",":echoe \"Use h\"<cr>",opts)
+keymap("n","<Right>",":echoe \"Use l\"<cr>",opts)
+keymap("n","<Up>",":echoe \"Use k\"<cr>",opts)
+keymap("n","<Down>",":echoe \"Use j\"<cr>",opts)
