@@ -38,6 +38,7 @@ local options = {
     hidden = true,                          -- set hidden buffers
     autoread = true,                         -- Reload files changed outside vim
     showmatch = true,                       -- Highlights matching brackets in programming languages
+    background = "dark",
 }
 vim.opt.shortmess:append "c"
 
