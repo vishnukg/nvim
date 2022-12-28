@@ -21,6 +21,7 @@ keymap("i", "kj", "<ESC>", opts)
 
 -- Shortcut for saving all changed files in normal mode
 keymap("n","<leader><leader>", ":wa<cr>",opts)
+keymap("","<leader><leader>", ":wa<cr>",opts)
 
 -- This unsets the last search pattern register by hitten return
 keymap("n","<C-l>",":noh<cr><C-l>",opts)
