@@ -11,7 +11,6 @@ local options = {
     mouse = "a",                            -- allow the mouse to be used in neovim
     pumheight = 10,                         -- pop up menu height
     showmode = true,                        -- we don't need to see things like -- INSERT -- anymore
-    showtabline = 2,                        -- always show tabs
     smartcase = true,                        -- smart case
     smartindent = true,                      -- make indenting smarter again
     splitbelow = true,                       -- force all horizontal splits to go below current window
