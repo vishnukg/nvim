@@ -47,6 +47,9 @@ end
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
+vim.cmd [[ 
+    syntax enable
+    filetype plugin indent on
+    hi CursorLine cterm=None ctermbg=236 ctermfg=None
+]]
 
-vim.cmd "syntax enable"
-vim.cmd "filetype plugin indent on"
