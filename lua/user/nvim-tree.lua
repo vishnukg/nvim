@@ -1,7 +1,3 @@
--- disable netrw at the very start of your init.lua (strongly advised)
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 -- following options are the default
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
 
@@ -12,6 +8,13 @@ end
 
 
 nvim_tree.setup {
+    disable_netrw = true,
+    hijack_netrw = true,
+    open_on_setup = true,
+    quit_on_open = true,
+    open_on_tab = false,
+    hijack_cursor = false,
+    update_cwd = true,
     view = {
         width = 30,
         adaptive_size = true,
@@ -21,6 +24,16 @@ nvim_tree.setup {
                 { key = "u", action = "dir_up" },
             },
         },
+    },
+    update_focused_file = {
+        enable = true,
+        update_cwd = true,
+        ignore_list = {},
+    },
+    git = {
+        enable = true,
+        ignore = true,
+        timeout = 500,
     },
     renderer = {
         root_folder_modifier = ":t",
