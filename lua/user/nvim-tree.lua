@@ -10,17 +10,13 @@ if not status_ok then
     return
 end
 
-local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
-if not config_status_ok then
-    return
-end
-
-local tree_cb = nvim_tree_config.nvim_tree_callback
 
 nvim_tree.setup {
-    sort_by = "case_sensitive",
+    open_on_setup = true,
     view = {
+        width = 30,
         adaptive_size = true,
+        side = "left",
         mappings = {
             list = {
                 { key = "u", action = "dir_up" },
