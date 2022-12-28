@@ -36,6 +36,7 @@ vim.opt.guifont = "monospace:h17"               -- the font used in graphical ne
 vim.opt.guicursor = ""                          -- Set block cursor in insert mode
 vim.opt.hidden = true                           -- set hidden buffers
 vim.opt.autoread = true                         -- Reload files changed outside vim
+vim.opt.showmatch = true                        -- Highlights matching brackets in programming languages
 
 vim.opt.shortmess:append "c"
 
