@@ -6,6 +6,7 @@ local servers = {
 	"pyright",
 	-- "bashls",
 	"jsonls",
+    "elixir-ls",
 	-- "yamlls",
 }
 
