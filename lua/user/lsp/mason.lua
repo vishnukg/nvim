@@ -7,6 +7,7 @@ local servers = {
 	-- "bashls",
 	"jsonls",
     "elixirls",
+    "rust_analyzer",
 	-- "yamlls",
 }
 
