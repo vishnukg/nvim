@@ -59,3 +59,7 @@ vim.keymap.set('n', '<C-s>', builtin.git_files, {})
 vim.keymap.set('n', '<leader>fw', function()
 	builtin.grep_string({ search = vim.fn.input("Grep > ") })
 end)
+
+
+--NvimTree
+keymap("n", "<C-g>", ":NvimTreeToggle<cr>", opts)
