@@ -14,93 +14,46 @@ end
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
 nvim_tree.setup {
-    disable_netrw = true,
-    hijack_netrw = true,
-    open_on_setup = false,
-    ignore_ft_on_setup = {
-        "startify",
-        "dashboard",
-        "alpha",
-    },
-    open_on_tab = false,
-    hijack_cursor = false,
-    update_cwd = true,
-    hijack_directories = {
-        enable = true,
-        auto_open = true,
-    },
-    diagnostics = {
-        enable = true,
-        icons = {
-            hint = "",
-            info = "",
-            warning = "",
-            error = "",
-        },
-    },
-    update_focused_file = {
-        enable = true,
-        update_cwd = true,
-        ignore_list = {},
-    },
-    git = {
-        enable = true,
-        ignore = true,
-        timeout = 500,
-    },
+    sort_by = "case_sensitive",
     view = {
-        width = 30,
-        height = 30,
-        hide_root_folder = false,
-        side = "left",
-        auto_resize = true,
+        adaptive_size = true,
         mappings = {
-            custom_only = false,
             list = {
-            { key = { "l", "<CR>", "o" }, cb = tree_cb "edit" },
-            { key = "h", cb = tree_cb "close_node" },
-            { key = "v", cb = tree_cb "vsplit" },
+                { key = "u", action = "dir_up" },
             },
         },
-        number = false,
-        relativenumber = false,
-    },
-    actions = {
-        quit_on_open = true,
-        window_picker = { enable = true },
     },
     renderer = {
-        highlight_git = true,
         root_folder_modifier = ":t",
         icons = {
-            show = {
-                file = true,
-                folder = true,
-                folder_arrow = true,
-                git = true,
-            },
             glyphs = {
-                default = "",
+                default = "",
                 symlink = "",
-                git = {
-                    unstaged = "",
-                    staged = "S",
-                    unmerged = "",
-                    renamed = "➜",
-                    deleted = "",
-                    untracked = "U",
-                    ignored = "◌",
-                },
                 folder = {
+                    arrow_open = "",
+                    arrow_closed = "",
                     default = "",
                     open = "",
                     empty = "",
                     empty_open = "",
                     symlink = "",
+                    symlink_open = "",
                 },
-            }
-        }
-    }
+                git = {
+                    unstaged = "",
+                    staged = "S",
+                    unmerged = "",
+                    renamed = "➜",
+                    untracked = "U",
+                    deleted = "",
+                    ignored = "◌",
+                },
+            },
+        },
+    },
+    filters = {
+        dotfiles = true,
+    },
 }
 
 
