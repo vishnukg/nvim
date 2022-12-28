@@ -51,6 +51,5 @@ vim.cmd [[set iskeyword+=-]]
 vim.cmd [[ 
     syntax enable
     filetype plugin indent on
-    hi CursorLine cterm=None ctermbg=236 ctermfg=None
 ]]
 
