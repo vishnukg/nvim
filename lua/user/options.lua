@@ -34,6 +34,8 @@ vim.opt.scrolloff = 8                           -- is one of my fav
 vim.opt.sidescrolloff = 8
 vim.opt.guifont = "monospace:h17"               -- the font used in graphical neovim applications
 vim.opt.guicursor = ""                          -- Set block cursor in insert mode
+vim.opt.hidden = true                           -- set hidden buffers
+vim.opt.autoread = true                         -- Reload files changed outside vim
 
 vim.opt.shortmess:append "c"
 
