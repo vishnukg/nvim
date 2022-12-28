@@ -42,27 +42,31 @@ packer.init {
 return packer.startup(function(use)
     -- My plugins here
     use "wbthomason/packer.nvim" -- Have packer manage itself
-    
     use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
-
     use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
-
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.0',
         -- or                            , branch = '0.1.x',
         requires = { {'nvim-lua/plenary.nvim'} }
     }
-
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate'})
-
     use "nvim-treesitter/playground"
-
     use "mbbill/undotree"
-
     use "tpope/vim-fugitive"
 
     -- Colorscheme
     use "lunarvim/darkplus.nvim"
+
+    -- cmp plugins
+    use "hrsh7th/nvim-cmp" -- The completion plugin
+    use "hrsh7th/cmp-buffer" -- buffer completions
+    use "hrsh7th/cmp-path" -- path completions
+    use "hrsh7th/cmp-cmdline" -- cmdline completions
+    use "saadparwaiz1/cmp_luasnip" -- snippet completions
+
+    -- snippets
+    use "L3MON4D3/LuaSnip" --snippet engine
+    use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
