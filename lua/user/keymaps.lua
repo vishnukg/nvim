@@ -17,6 +17,7 @@ keymap("n", "<C-g>", ":Lex 30<cr>", opts)
 -- Insert --
 -- Press jk fast to enter
 keymap("i", "jk", "<ESC>", opts)
+keymap("i", "kj", "<ESC>", opts)
 
 -- Shortcut for saving all changed files in normal mode
 keymap("n","<leader><leader>", ":wa<cr>",opts)
