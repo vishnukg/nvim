@@ -51,3 +51,11 @@ keymap("v", ">", ">gv", opts)
 keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap("v", "<A-k>", ":m .-2<CR>==", opts)
 keymap("v", "p", '"_dP', opts)
+
+--Telescope mappings
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<C-s>', builtin.git_files, {})
+vim.keymap.set('n', '<leader>fw', function()
+	builtin.grep_string({ search = vim.fn.input("Grep > ") })
+end)
