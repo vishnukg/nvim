@@ -11,7 +11,6 @@ nvim_tree.setup {
     disable_netrw = true,
     hijack_netrw = true,
     open_on_setup = true,
-    quit_on_open = true,
     open_on_tab = false,
     hijack_cursor = false,
     update_cwd = true,
