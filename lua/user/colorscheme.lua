@@ -1,4 +1,7 @@
-local colorscheme = "darkplus"
+require('rose-pine').setup({
+    disable_background = true
+})
+local colorscheme = "rose-pine"
 
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not status_ok then
@@ -13,9 +16,6 @@ vim.api.nvim_set_hl(0, "Folded",{bg = "none", fg="None"})
 vim.api.nvim_set_hl(0, "SpecialKey",{bg = "none", fg="None"})
 vim.api.nvim_set_hl(0, "VertSplit",{bg = "none", fg="None"})
 vim.api.nvim_set_hl(0, "SignColumn",{bg = "none", fg="None"})
-vim.api.nvim_set_hl(0, "NonText",{bg = "none", fg="None"})
-
-
 
 vim.api.nvim_set_hl(0, "Visual",{bg = "#4da9ff", fg="None"})
 vim.api.nvim_set_hl(0, "CursorLine",{bg = "#464d53", fg="None"})
