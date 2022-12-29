@@ -19,6 +19,7 @@ null_ls.setup({
 		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.stylua,
 		formatting.gofmt,
+		formatting.rustfmt,
 		diagnostics.flake8,
 		diagnostics.golangci_lint,
 	},
