@@ -18,17 +18,17 @@ keymap("i", "jk", "<ESC>", opts)
 keymap("i", "kj", "<ESC>", opts)
 
 -- Shortcut for saving all changed files in normal mode
-keymap("n","<leader><leader>", ":wa<cr>",opts)
-keymap("","<leader><leader>", ":wa<cr>",opts)
+keymap("n", "<leader><leader>", ":wa<cr>", opts)
+keymap("", "<leader><leader>", ":wa<cr>", opts)
 
 -- This unsets the last search pattern register by hitten return
-keymap("n","<C-l>",":noh<cr><C-l>",opts)
+keymap("n", "<C-l>", ":noh<cr><C-l>", opts)
 
 -- Disable the use of arrow keys in normal mode
-keymap("n","<Left>",":echoe \"Use h\"<cr>",opts)
-keymap("n","<Right>",":echoe \"Use l\"<cr>",opts)
-keymap("n","<Up>",":echoe \"Use k\"<cr>",opts)
-keymap("n","<Down>",":echoe \"Use j\"<cr>",opts)
+keymap("n", "<Left>", ':echoe "Use h"<cr>', opts)
+keymap("n", "<Right>", ':echoe "Use l"<cr>', opts)
+keymap("n", "<Up>", ':echoe "Use k"<cr>', opts)
+keymap("n", "<Down>", ':echoe "Use j"<cr>', opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize +2<CR>", opts)
@@ -56,6 +56,9 @@ keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 
-
 --NvimTree
 keymap("n", "<C-g>", ":NvimTreeToggle<cr>", opts)
+
+--Ctrlsf
+keymap("n", "<leader>f", "<Plug>CtrlSFPrompt", opts)
+keymap("n", "<leader>fw", "<Plug>CtrlSFCwordPath -W<CR>", opts)
