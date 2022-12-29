@@ -59,6 +59,9 @@ keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 --NvimTree
 keymap("n", "<C-g>", ":NvimTreeToggle<cr>", opts)
 
---Ctrlsf
-keymap("n", "<leader>f", "<Plug>CtrlSFPrompt", opts)
-keymap("n", "<leader>fw", "<Plug>CtrlSFCwordPath -W<CR>", opts)
+--Spectre
+keymap("n", "<leader>sp", "<cmd>lua require('spectre').open()<CR>", opts)
+
+-- Spectre search current word
+keymap("n", "<leader>sw", "<cmd>lua require('spectre').open_visual({select_word=true})<CR>", opts)
+keymap("n", "<leader>s", "<esc>:lua require('spectre').open_visual()<CR>", opts)
