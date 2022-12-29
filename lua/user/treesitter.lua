@@ -6,13 +6,19 @@ end
 
 configs.setup({
     ensure_installed = { "bash", "c","elixir", "javascript", "json", "lua", "python", "typescript", "tsx", "css", "rust", "java", "yaml", "markdown", "markdown_inline","vim","go"}, -- one of "all" or a list of languages
-    ignore_install = { "phpdoc" }, -- List of parsers to ignore installing
-    highlight = {
-        enable = true, -- false will disable the whole extension
-        disable = { "css" }, -- list of language that will be disabled
-    },
+    sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
+    ignore_install = { "" }, -- List of parsers to ignore installing
     autopairs = {
         enable = true,
     },
-    indent = { enable = true, disable = {  "css" } },
+    highlight = {
+        enable = true, -- false will disable the whole extension
+        disable = { "" }, -- list of language that will be disabled
+        additional_vim_regex_highlighting = true,
+    },
+    indent = { enable = true, disable = { "yaml" } },
+    context_commentstring = {
+        enable = true,
+        enable_autocmd = false,
+    },
 })
