@@ -8,6 +8,10 @@ local formatting = null_ls.builtins.formatting
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 local diagnostics = null_ls.builtins.diagnostics
 
+-- This is where you add more formatters. If you want to add a formatter, first add the binary (Ex. stylua or black)
+-- and then setup it up here so null-ls can use it behind the scenes.
+-- Behind the scenes its uses lua vim.lsp.buf.format to autoformat
+
 null_ls.setup({
 	debug = false,
 	sources = {
