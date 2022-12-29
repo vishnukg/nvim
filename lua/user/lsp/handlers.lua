@@ -72,6 +72,10 @@ local function lsp_keymaps(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
+	-- Sometimes the lsp for a particular language (Ex: tsserver) has
+	-- its own formatting provider. The following statement disables
+	-- the builtin formatter from the lsp for that language. We instead
+	-- rely on the formatter provided by null-ls plugin
 	if client.name == "tsserver" then
 		client.server_capabilities.documentFormattingProvider = false
 	end
