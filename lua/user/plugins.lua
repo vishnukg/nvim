@@ -63,6 +63,13 @@ return packer.startup(function(use)
     -- Colorscheme
     use "lunarvim/darkplus.nvim"
 
+    -- Commenting code
+    use {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
+    }
     -- cmp plugins
     use "hrsh7th/nvim-cmp" -- The completion plugin
     use "hrsh7th/cmp-buffer" -- buffer completions
