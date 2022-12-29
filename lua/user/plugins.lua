@@ -62,13 +62,8 @@ return packer.startup(function(use)
     }
     -- Colorscheme
     use "lunarvim/darkplus.nvim"
-    use({
-        'rose-pine/neovim',
-        as = 'rose-pine',
-        config = function()
-            vim.cmd('colorscheme rose-pine')
-        end
-    })
+    use 'Mofiqul/vscode.nvim'
+
     -- Commenting code
     use {
         'numToStr/Comment.nvim',
