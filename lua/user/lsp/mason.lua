@@ -9,6 +9,7 @@ local servers = {
 	"gopls",
 	"rust_analyzer",
 	"yamlls",
+	"csharp_ls",
 }
 
 local settings = {
