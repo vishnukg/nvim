@@ -6,7 +6,7 @@ If you want nvim to support a new language please do the following.
    and add that to config section under LSP/ folder
 3. Install treesitter for your specific language to get good syntax highlighting
 4. Manually install a formatter and a diagnostics tool(linter) for that language and update null-ls.lua with
-   that information.
+   that information. You can find the information on available formatter and diagnostics from here -> https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 
 Auto completions is handled by nvim cmp. It has the rules on how the variables/functions/methods appear in the drop down
 menu.
