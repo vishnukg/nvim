@@ -13,3 +13,5 @@ menu.
 
 After installing a plugin using packer, you need to initialise the package by setting it up. check the corresponding plugin files
 to see how the setup method is invoked.
+
+Mason installs lsp servers and other binaries here in your local machine $HOME/.local/share/nvim/mason
