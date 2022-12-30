@@ -26,4 +26,4 @@ null_ls.setup({
 })
 
 -- Auto formatting on save
-vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format{async = true}]])
+vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format({async = true})]])
