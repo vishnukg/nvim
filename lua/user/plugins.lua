@@ -40,7 +40,7 @@ packer.init({
 
 -- Install your plugins here
 return packer.startup(function(use)
-	-- My plugins here
+	-- Basic plugins here
 	use("wbthomason/packer.nvim") -- Have packer manage itself
 	use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
 	use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
@@ -57,12 +57,14 @@ return packer.startup(function(use)
 	use("kyazdani42/nvim-web-devicons")
 	use("kyazdani42/nvim-tree.lua")
 	use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
+	use("akinsho/toggleterm.nvim")
 
 	-- Lualine
 	use({
 		"nvim-lualine/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
 	})
+
 	-- Colorscheme
 	use("lunarvim/darkplus.nvim")
 	use("Mofiqul/vscode.nvim")
@@ -74,6 +76,7 @@ return packer.startup(function(use)
 			require("Comment").setup()
 		end,
 	})
+
 	-- cmp plugins
 	use("hrsh7th/nvim-cmp") -- The completion plugin
 	use("hrsh7th/cmp-buffer") -- buffer completions
