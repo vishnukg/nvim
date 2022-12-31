@@ -58,7 +58,6 @@ return packer.startup(function(use)
 	use("kyazdani42/nvim-tree.lua")
 	use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
 	use("akinsho/toggleterm.nvim")
-	use("akinsho/bufferline.nvim")
 
 	-- Lualine
 	use({
