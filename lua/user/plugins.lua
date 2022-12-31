@@ -56,6 +56,8 @@ return packer.startup(function(use)
 	use("tpope/vim-fugitive")
 	use("kyazdani42/nvim-web-devicons")
 	use("kyazdani42/nvim-tree.lua")
+	use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
+
 	-- Lualine
 	use({
 		"nvim-lualine/lualine.nvim",
