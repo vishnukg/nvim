@@ -65,3 +65,7 @@ keymap("n", "<leader>sp", "<cmd>lua require('spectre').open()<CR>", opts)
 -- Spectre search current word
 keymap("n", "<leader>sw", "<cmd>lua require('spectre').open_visual({select_word=true})<CR>", opts)
 keymap("n", "<leader>s", "<esc>:lua require('spectre').open_visual()<CR>", opts)
+
+-- Toggle Term
+keymap("n", "<leader>tr", ":ToggleTerm direction=vertical<CR>", opts)
+keymap("n", "<leader>tb", ":ToggleTerm size=20 direction=horizontal<CR>", opts)
