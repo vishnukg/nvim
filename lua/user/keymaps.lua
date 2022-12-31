@@ -69,4 +69,4 @@ keymap("n", "<leader>s", "<esc>:lua require('spectre').open_visual()<CR>", opts)
 -- Toggle Term
 keymap("n", "<leader>tr", ":ToggleTerm direction=vertical<CR>", opts)
 keymap("n", "<leader>tb", ":ToggleTerm size=20 direction=horizontal<CR>", opts)
-keymap("n", "<leader>gt", "<cmd>lua _TIGGIT_TOGGLE()<CR>", opts)
+keymap("n", "<leader>gt", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
