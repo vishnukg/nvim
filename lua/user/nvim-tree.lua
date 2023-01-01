@@ -64,6 +64,11 @@ nvim_tree.setup({
 	filters = {
 		dotfiles = false,
 	},
+	actions = {
+		open_file = {
+			quit_on_open = true,
+		},
+	},
 })
 
 -- Autoclose nvim_tree native option
