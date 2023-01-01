@@ -56,7 +56,7 @@ nvim_tree.setup({
 					renamed = "➜",
 					untracked = "U",
 					deleted = "",
-					ignored = "◌",
+					ignored = "*",
 				},
 			},
 		},
