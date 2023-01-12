@@ -20,12 +20,12 @@ null_ls.setup({
 	debug = false,
 	sources = {
 		formatting.prettier,
-		formatting.eslint,
 		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.stylua,
 		formatting.goimports,
 		formatting.rustfmt,
 		formatting.csharpier,
+		diagnostics.eslint,
 		diagnostics.flake8,
 		diagnostics.golangci_lint,
 	},
