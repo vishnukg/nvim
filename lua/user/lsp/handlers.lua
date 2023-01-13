@@ -55,8 +55,9 @@ local function lsp_keymaps(bufnr)
 	local opts = { noremap = true, silent = true }
 	local keymap = vim.api.nvim_buf_set_keymap
 	keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-	keymap(bufnr, "n", "gd", "<cmd>Lspsaga peek_definition<CR><CR>", opts)
-	keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+	keymap(bufnr, "n", "gp", "<cmd>Lspsaga peek_definition<CR><CR>", opts)
+	keymap(bufnr, "n", "gd", "<cmd>Lspsaga goto_definition<CR><CR>", opts)
+	keymap(bufnr, "n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
 	keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
 	keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 	keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
@@ -69,6 +70,11 @@ local function lsp_keymaps(bufnr)
 	keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
 	keymap(bufnr, "n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 	keymap(bufnr, "n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+	keymap(bufnr, "n", "<leader>ci", "<cmd>Lspsaga incoming_calls", opts)
+	keymap(bufnr, "n", "<leader>co", "<cmd>Lspsaga outgoing_calls", opts)
+	keymap(bufnr, "n", "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics", opts)
+	keymap(bufnr, "n", "<leader>sb", "<cmd>Lspsaga show_buf_diagnostics", opts)
+	keymap(bufnr, "n", "<leader>sl", "<cmd>Lspsaga show_line_diagnostics", opts)
 end
 
 M.on_attach = function(client, bufnr)
