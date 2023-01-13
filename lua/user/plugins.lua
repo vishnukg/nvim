@@ -96,7 +96,6 @@ return packer.startup(function(use)
 	use("williamboman/mason-lspconfig.nvim") -- simple to use language server installer
 	use("jose-elias-alvarez/null-ls.nvim") -- LSP diagnostics and code actions
 	use("j-hui/fidget.nvim") -- LSP progress status
-	use({ "glepnir/lspsaga.nvim", branch = "main" }) -- LSP saga for code action popup
 
 	-- Git
 	use("lewis6991/gitsigns.nvim")
