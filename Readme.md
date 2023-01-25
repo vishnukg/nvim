@@ -1,6 +1,6 @@
 If you want nvim to support a new language please do the following.
 
-Post Installation steps:
+Post Install config steps:
 
 0. Install FZF, Ripgrep for telescope to work correctly and to ignore gitignored paths.
 1. Install a LSP for the language using Mason. Update the mason.lua file to add the server. Mason-lspconfig plugin is
