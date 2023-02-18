@@ -24,7 +24,7 @@ nvim_tree.setup({
 	},
 	update_focused_file = {
 		enable = true,
-		update_cwd = true,
+		update_cwd = false,
 		ignore_list = {},
 	},
 	git = {
@@ -66,9 +66,9 @@ nvim_tree.setup({
 	actions = {
 		open_file = {
 			quit_on_open = true,
-            window_picker = {
-                enable = false
-            }
+			window_picker = {
+				enable = false,
+			},
 		},
 	},
 })
