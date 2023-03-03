@@ -1,3 +1,4 @@
+Clone this repository under ~/.config (the result will look like ~/.config/nvim)
 If you want nvim to support a new language please do the following.
 
 Post Install config steps:
