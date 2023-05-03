@@ -44,6 +44,9 @@ local kind_icons = {
     TypeParameter = "",
 }
 -- find more here: https://www.nerdfonts.com/cheat-sheet
+local ELLIPSIS_CHAR = '…'
+local MAX_LABEL_WIDTH = 10
+local MIN_LABEL_WIDTH = 10
 
 cmp.setup({
     snippet = {
@@ -97,8 +100,16 @@ cmp.setup({
     formatting = {
         fields = { "abbr", "kind", "menu" },
         format = function(entry, vim_item)
+            -- Setting width of abbr
+            local label = vim_item.abbr
+            local truncated_label = vim.fn.strcharpart(label, 0, MAX_LABEL_WIDTH)
+            if truncated_label ~= label then
+                vim_item.abbr = truncated_label .. ELLIPSIS_CHAR
+            elseif string.len(label) < MIN_LABEL_WIDTH then
+                local padding = string.rep(' ', MIN_LABEL_WIDTH - string.len(label))
+                vim_item.abbr = label .. padding
+            end
             -- Kind icons
-            vim_item.abbr = string.sub(vim_item.abbr, 1, 15)                                 -- reducing the width of the cmp menu
             vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
             --vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
             vim_item.menu = ({
