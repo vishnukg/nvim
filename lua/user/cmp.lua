@@ -45,8 +45,8 @@ local kind_icons = {
 }
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 local ELLIPSIS_CHAR = '…'
-local MAX_LABEL_WIDTH = 20
-local MIN_LABEL_WIDTH = 20
+local MAX_LABEL_WIDTH = 15
+local MIN_LABEL_WIDTH = 15
 
 cmp.setup({
     snippet = {
