@@ -30,7 +30,7 @@ local kind_icons = {
     Unit = "",
     Value = "",
     Enum = "",
-    Keyword = "",
+    Keyword = "",
     Snippet = "",
     Color = "",
     File = "",
@@ -45,8 +45,8 @@ local kind_icons = {
 }
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 local ELLIPSIS_CHAR = '…'
-local MAX_LABEL_WIDTH = 10
-local MIN_LABEL_WIDTH = 10
+local MAX_LABEL_WIDTH = 20
+local MIN_LABEL_WIDTH = 20
 
 cmp.setup({
     snippet = {
