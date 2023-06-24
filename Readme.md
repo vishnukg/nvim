@@ -28,3 +28,4 @@ Commands:
 3. :TSUpdate -> Update Tree sitter for languages.
 4. :LspInfo -> Shows information about the attached LSP clients in the current buffer.
 5. :NullLsInfo -> Shows information about the attached null-ls clients in the current buffer.
+

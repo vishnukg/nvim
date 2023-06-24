@@ -10,7 +10,7 @@ local servers = {
     "rust_analyzer",
     "yamlls",
     "omnisharp",
-    "solargraph"
+    "solargraph",
 }
 
 local settings = {
