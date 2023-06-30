@@ -11,6 +11,7 @@ local servers = {
 	"yamlls",
 	"omnisharp",
 	"solargraph",
+	"emmet_ls",
 }
 
 local settings = {
