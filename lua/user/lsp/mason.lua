@@ -14,6 +14,13 @@ local servers = {
 	"emmet_ls",
 }
 
+-- Mason doesn't support perl PLS language server. So I'm directly adding it here. Also
+-- install perl PLS through CPAN module
+-- If you need to add
+local non_mason_servers = {
+	"perlpls",
+}
+
 local settings = {
 	ui = {
 		border = "none",
@@ -45,7 +52,6 @@ for _, server in pairs(servers) do
 		on_attach = require("user.lsp.handlers").on_attach,
 		capabilities = require("user.lsp.handlers").capabilities,
 	}
-
 	server = vim.split(server, "@")[1]
 
 	local require_ok, conf_opts = pcall(require, "user.lsp.settings." .. server)
@@ -54,7 +60,21 @@ for _, server in pairs(servers) do
 	end
 
 	lspconfig[server].setup(opts)
-	-- Mason doesn't support perl PLS language server. So I'm directly adding it here. Also
-	-- install perl PLS through CPAN module
-	lspconfig["perlpls"].setup(opts)
+end
+
+local nm_opts = {}
+
+for _, server in pairs(non_mason_servers) do
+	nm_opts = {
+		on_attach = require("user.lsp.handlers").on_attach,
+		capabilities = require("user.lsp.handlers").capabilities,
+	}
+	server = vim.split(server, "@")[1]
+
+	local require_ok, conf_opts = pcall(require, "user.lsp.settings." .. server)
+	if require_ok then
+		opts = vim.tbl_deep_extend("force", conf_opts, nm_opts)
+	end
+
+	lspconfig[server].setup(nm_opts)
 end
