@@ -12,6 +12,7 @@ local servers = {
 	"omnisharp",
 	"solargraph",
 	"emmet_ls",
+	"perlnavigator",
 }
 
 local settings = {
