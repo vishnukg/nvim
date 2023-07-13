@@ -25,12 +25,9 @@ null_ls.setup({
 		formatting.goimports,
 		formatting.rustfmt,
 		formatting.csharpier,
-		formatting.rubocop,
-		formatting.perltidy,
 		diagnostics.eslint,
 		diagnostics.flake8,
 		diagnostics.golangci_lint,
-		diagnostics.rubocop,
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then
