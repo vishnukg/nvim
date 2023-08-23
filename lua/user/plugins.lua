@@ -100,6 +100,15 @@ return packer.startup(function(use)
 		tag = "legacy",
 	}) -- LSP progress status
 
+	-- Go language support
+	use({
+		"ray-x/go.nvim",
+		config = function()
+			require("go").setup()
+		end,
+	})
+	use({ "ray-x/guihua.lua", run = "cd lua/fzy && make" }) -- recommended if need floating window support
+
 	-- Git
 	use("lewis6991/gitsigns.nvim")
 
