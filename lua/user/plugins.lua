@@ -94,6 +94,7 @@ return packer.startup(function(use)
 	use("neovim/nvim-lspconfig") -- enable LSP
 	use("williamboman/mason.nvim") -- simple to use language server installer
 	use("williamboman/mason-lspconfig.nvim") -- simple to use language server installer
+	use("jose-elias-alvarez/null-ls.nvim") -- LSP diagnostics and code actions
 	use({
 		"j-hui/fidget.nvim",
 		tag = "legacy",

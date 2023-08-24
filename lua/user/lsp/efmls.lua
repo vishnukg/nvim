@@ -65,7 +65,7 @@ require("lspconfig").efm.setup(vim.tbl_extend("force", efmls_config, {
 				buffer = bufnr,
 				callback = function()
 					-- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-					vim.lsp.buf.format({ bufnr = bufnr })
+					vim.lsp.buf.format({ bufnr = bufnr, timeout = 4500 })
 				end,
 			})
 		end
