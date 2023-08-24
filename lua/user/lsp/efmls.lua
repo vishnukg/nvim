@@ -13,6 +13,8 @@ local flake8 = require("efmls-configs.linters.flake8")
 
 local stylelint = require("efmls-configs.linters.stylelint")
 
+local yamllint = require("efmls-configs.linters.yamllint")
+
 local languages = {
 	javascript = { eslint, prettier },
 	jsx = { eslint, prettier },
@@ -26,6 +28,9 @@ local languages = {
 	scss = { stylelint, prettier },
 	less = { stylelint, prettier },
 	sass = { stylelint, prettier },
+	json = { prettier },
+	yaml = { yamllint },
+	markdown = { prettier },
 }
 
 -- Or use the defaults provided by this plugin
