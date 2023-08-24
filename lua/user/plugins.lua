@@ -106,6 +106,9 @@ return packer.startup(function(use)
 		tag = "v1.*", -- tag is optional, but recommended
 		requires = { "neovim/nvim-lspconfig" },
 	})
+
+	use("lukas-reineke/lsp-format.nvim")
+
 	-- Go language support
 	use({
 		"ray-x/go.nvim",
