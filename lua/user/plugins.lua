@@ -29,8 +29,19 @@ return lazy.setup({
 		-- or                            , branch = '0.1.x',
 		dependencies = { { "nvim-lua/plenary.nvim" } },
 	},
-	"nvim-treesitter/nvim-treesitter",
-	{ build = ":TSUpdate" },
+	{
+		"nvim-tree/nvim-tree.lua",
+		version = "*",
+		lazy = false,
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
+		config = function()
+			require("nvim-tree").setup({})
+		end,
+	},
+	{ "nvim-tree/nvim-web-devicons", lazy = true },
+	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 	"nvim-treesitter/playground",
 	"mbbill/undotree",
 	"tpope/vim-fugitive",
@@ -40,7 +51,7 @@ return lazy.setup({
 	-- Lualine
 	{
 		"nvim-lualine/lualine.nvim",
-		dependencies = { "kyazdani42/nvim-web-devicons", opt = true },
+		dependencies = { "nvim-tree/nvim-web-devicons", opt = true },
 	},
 
 	-- Colorscheme
