@@ -11,8 +11,8 @@ local servers = {
 	"yamlls",
 	"omnisharp",
 	"emmet_ls",
+	"zls",
 }
-
 
 local settings = {
 	ui = {
