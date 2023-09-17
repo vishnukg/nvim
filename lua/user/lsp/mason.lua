@@ -12,6 +12,7 @@ local servers = {
 	"omnisharp",
 	"emmet_ls",
 	"zls",
+	"solargraph",
 }
 
 local settings = {

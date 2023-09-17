@@ -25,6 +25,7 @@ null_ls.setup({
 		formatting.goimports,
 		formatting.rustfmt,
 		formatting.zigfmt,
+		formatting.rubocop,
 		formatting.csharpier,
 		diagnostics.eslint,
 		diagnostics.flake8,
