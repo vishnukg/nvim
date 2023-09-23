@@ -113,6 +113,17 @@ return lazy.setup({
 	-- Search and Replace
 	"windwp/nvim-spectre",
 
+	-- Refactoring
+	{
+		"ThePrimeagen/refactoring.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		config = function()
+			require("refactoring").setup()
+		end,
+	},
 	-- Testing
 	{
 		"nvim-neotest/neotest",
