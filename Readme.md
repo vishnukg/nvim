@@ -12,6 +12,7 @@ Post Install config steps:
 4. Manually install a formatter and a diagnostics tool(linter) for that language and update null-ls.lua with
    that information. You can find the information on available formatter and diagnostics from here -> https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 5. We need to install rg and gnu-sed for nvim spectre to work.
+6. We need to install xclip in linux for neovim to be able to copy to clipboard
 
 Auto completions is handled by nvim cmp. It has the rules on how the variables/functions/methods appear in the drop down
 menu.
