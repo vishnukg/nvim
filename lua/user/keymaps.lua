@@ -16,6 +16,9 @@ local keymap = vim.api.nvim_set_keymap
 keymap("i", "jk", "<ESC>", opts)
 keymap("i", "kj", "<ESC>", opts)
 
+-- Turn off vim macro recording
+keymap("n", "q", "<Nop>", opts)
+
 -- Shortcut for saving all changed files in normal mode
 keymap("n", "<leader><leader>", ":wa<cr>", opts)
 keymap("", "<leader><leader>", ":wa<cr>", opts)
