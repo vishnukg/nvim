@@ -13,6 +13,7 @@ local servers = {
 	"emmet_ls",
 	"zls",
 	"solargraph",
+	"angular-language-server",
 }
 
 local settings = {
