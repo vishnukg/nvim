@@ -133,4 +133,7 @@ return lazy.setup({
 			"antoinemadec/FixCursorHold.nvim",
 		},
 	},
+
+	-- Indent blankline
+	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 })
