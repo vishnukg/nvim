@@ -131,15 +131,11 @@ return lazy.setup({
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
 			"antoinemadec/FixCursorHold.nvim",
+			"nvim-neotest/neotest-jest",
 			"marilari88/neotest-vitest",
+			"nvim-neotest/neotest-go",
+			"nvim-neotest/neotest-python",
 		},
-		config = function()
-			require("neotest").setup({
-				adapters = {
-					require("neotest-vitest"),
-				},
-			})
-		end,
 	},
 
 	-- Indent blankline
