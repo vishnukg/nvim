@@ -83,7 +83,7 @@ return lazy.setup({
 	"neovim/nvim-lspconfig", -- enable LSP
 	"williamboman/mason.nvim", -- simple to use language server installer
 	"williamboman/mason-lspconfig.nvim", -- simple to use language server installer
-    "jose-elias-alvarez/null-ls.nvim",
+	"nvimtools/none-ls.nvim", -- Replacing none ls with null-ls
 	{
 		"j-hui/fidget.nvim",
 		tag = "legacy",
