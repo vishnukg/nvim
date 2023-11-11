@@ -136,6 +136,16 @@ return lazy.setup({
 			"nvim-neotest/neotest-go",
 			"nvim-neotest/neotest-python",
 		},
+		config = function()
+			require("neotest").setup({
+				adapter = {
+					require("neotest-python"),
+					require("neotest-jest"),
+					require("neotest-vitest"),
+					require("neotest-go"),
+				},
+			})
+		end,
 	},
 
 	-- Indent blankline
