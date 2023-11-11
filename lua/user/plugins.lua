@@ -138,7 +138,7 @@ return lazy.setup({
 		},
 		config = function()
 			require("neotest").setup({
-				adapter = {
+				adapters = {
 					require("neotest-python"),
 					require("neotest-jest"),
 					require("neotest-vitest"),
