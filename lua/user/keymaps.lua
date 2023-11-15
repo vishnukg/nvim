@@ -74,4 +74,4 @@ keymap("n", "<leader>tb", ":ToggleTerm size=20 direction=horizontal<CR>", opts)
 keymap("n", "<leader>gt", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 
 -- Diff two files in the split buffers
-keymap("n", "<leader>fd", ":windo diffthis<CR>", opts)
+keymap("n", "<leader>df", ":windo diffthis<CR>", opts)
