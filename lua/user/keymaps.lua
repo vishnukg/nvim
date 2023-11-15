@@ -72,3 +72,6 @@ keymap("n", "<leader>s", "<esc>:lua require('spectre').open_visual()<CR>", opts)
 keymap("n", "<leader>tr", ":ToggleTerm size=90 direction=vertical<CR>", opts)
 keymap("n", "<leader>tb", ":ToggleTerm size=20 direction=horizontal<CR>", opts)
 keymap("n", "<leader>gt", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
+
+-- Diff two files in the split buffers
+keymap("n", "<leader>fd", ":windo diffthis<CR>", opts)
