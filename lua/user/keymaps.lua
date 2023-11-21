@@ -75,3 +75,7 @@ keymap("n", "<leader>gt", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 
 -- Diff two files in the split buffers
 keymap("n", "<leader>df", ":windo diffthis<CR>", opts)
+
+-- Neotest runner
+keymap("n", "<leader>tr", ":Neotest run<CR>", opts)
+keymap("n", "<leader>trs", ":Neotest summary<CR>", opts)
