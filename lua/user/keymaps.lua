@@ -69,8 +69,8 @@ keymap("n", "<leader>sw", "<cmd>lua require('spectre').open_visual({select_word=
 keymap("n", "<leader>s", "<esc>:lua require('spectre').open_visual()<CR>", opts)
 
 -- Toggle Term
-keymap("n", "<leader>tr", ":ToggleTerm size=90 direction=vertical<CR>", opts)
-keymap("n", "<leader>tb", ":ToggleTerm size=20 direction=horizontal<CR>", opts)
+keymap("n", "<leader>tv", ":ToggleTerm size=90 direction=vertical<CR>", opts)
+keymap("n", "<leader>th", ":ToggleTerm size=20 direction=horizontal<CR>", opts)
 keymap("n", "<leader>gt", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 
 -- Diff two files in the split buffers
