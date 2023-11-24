@@ -77,5 +77,10 @@ keymap("n", "<leader>gt", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 keymap("n", "<leader>df", ":windo diffthis<CR>", opts)
 
 -- Neotest runner
-keymap("n", "<leader>tr", ":Neotest run<CR>", opts)
-keymap("n", "<leader>ts", ":Neotest summary<CR>", opts)
+-- keymap("n", "<leader>tr", ":Neotest run<CR>", opts)
+-- keymap("n", "<leader>ts", ":Neotest summary<CR>", opts)
+
+-- Vim test runner
+keymap("n", "<leader>tf", ":TestFile<CR>", opts)
+keymap("n", "<leader>ts", ":TestSuite<CR>", opts)
+keymap("n", "<leader>tl", ":TestLast<CR>", opts)

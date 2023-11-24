@@ -148,6 +148,7 @@ return lazy.setup({
 		end,
 	},
 
+	"vim-test/vim-test",
 	-- Indent blankline
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 })
