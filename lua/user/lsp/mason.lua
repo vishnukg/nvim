@@ -5,13 +5,11 @@ local servers = {
 	"pyright",
 	"bashls",
 	"jsonls",
-	"elixirls",
 	"gopls",
 	"rust_analyzer",
 	"yamlls",
 	"omnisharp",
 	"emmet_ls",
-	"zls",
 	"angularls",
 }
 
