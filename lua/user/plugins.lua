@@ -155,7 +155,6 @@ return lazy.setup({
 		main = "ibl",
 		opts = {
 			indent = { char = "│" },
-			whitespace = { highlight = { "Whitespace", "NonText" } },
 		},
 	},
 })
