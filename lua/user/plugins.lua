@@ -150,5 +150,12 @@ return lazy.setup({
 
 	"vim-test/vim-test",
 	-- Indent blankline
-	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		opts = {
+			indent = { char = "│" },
+			whitespace = { highlight = { "Whitespace", "NonText" } },
+		},
+	},
 })
