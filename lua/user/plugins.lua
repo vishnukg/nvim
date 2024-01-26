@@ -55,9 +55,14 @@ return lazy.setup({
 	},
 
 	-- Colorscheme
-	"lunarvim/darkplus.nvim",
 	"Mofiqul/vscode.nvim",
-    "navarasu/onedark.nvim",
+	"navarasu/onedark.nvim",
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+	},
 
 	-- Commenting code
 	{
