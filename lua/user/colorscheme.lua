@@ -6,8 +6,6 @@ if not status_ok then
 	return
 end
 
-vim.o.background = "dark"
-
 local c = require("vscode.colors").get_colors()
 require("vscode").setup({
 	-- Alternatively set style in setup
@@ -48,3 +46,5 @@ vim.api.nvim_set_hl(0, "CursorLine", { bg = "#464d53", fg = "None" })
 -- hi Pmenu bg=color to set popup menu background
 -- hi PmenuSel bg=color to set popup menu selection background
 vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#4da9ff", fg = "None" })
+
+vim.o.background = "dark"
