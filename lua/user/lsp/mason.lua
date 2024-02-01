@@ -10,7 +10,7 @@ local servers = {
 	"yamlls",
 	"omnisharp",
 	"emmet_ls",
-	"angularls",
+	"taplo",
 }
 
 local settings = {
