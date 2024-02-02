@@ -1,6 +1,15 @@
 return {
 	settings = {
 		["rust-analyzer"] = {
+			imports = {
+				granularity = {
+					group = "module",
+				},
+				prefix = "self",
+			},
+			procMacro = {
+				enable = true,
+			},
 			diagnostics = {
 				enable = true,
 			},
@@ -10,6 +19,9 @@ return {
 			},
 			cargo = {
 				allFeatures = true,
+				buildScripts = {
+					enable = true,
+				},
 			},
 			checkOnSave = {
 				-- default: `cargo check`
