@@ -113,6 +113,9 @@ return lazy.setup({
 	},
 	{ "ray-x/guihua.lua", build = "cd lua/fzy && make" }, -- recommended if need floating window support
 
+	-- Rust language
+	"simrat39/rust-tools.nvim",
+
 	-- Git
 	"lewis6991/gitsigns.nvim",
 
