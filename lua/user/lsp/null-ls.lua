@@ -23,12 +23,8 @@ null_ls.setup({
 		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.stylua,
 		formatting.goimports,
-		formatting.rustfmt,
-		formatting.zigfmt,
 		formatting.rubocop,
 		formatting.csharpier,
-		diagnostics.eslint,
-		diagnostics.flake8,
 		diagnostics.golangci_lint,
 	},
 	on_attach = function(client, bufnr)
