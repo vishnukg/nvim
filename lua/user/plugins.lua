@@ -104,13 +104,6 @@ return lazy.setup({
 
 	"lukas-reineke/lsp-format.nvim",
 
-	-- Go language support
-	{
-		"ray-x/go.nvim",
-		config = function()
-			require("go").setup()
-		end,
-	},
 	{ "ray-x/guihua.lua", build = "cd lua/fzy && make" }, -- recommended if need floating window support
 
 	-- Rust language
