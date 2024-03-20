@@ -8,7 +8,6 @@ configs.setup({
 	ensure_installed = {
 		"bash",
 		"c",
-		"elixir",
 		"javascript",
 		"json",
 		"lua",
@@ -17,7 +16,6 @@ configs.setup({
 		"tsx",
 		"css",
 		"rust",
-		"java",
 		"yaml",
 		"markdown",
 		"markdown_inline",
@@ -26,8 +24,6 @@ configs.setup({
 		"c_sharp",
 		"html",
 		"xml",
-		"perl",
-		"zig",
 		"toml",
 	}, -- one of "all" or a list of languages
 	sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
