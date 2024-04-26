@@ -25,6 +25,7 @@ configs.setup({
 		"html",
 		"xml",
 		"toml",
+		"svelte",
 	}, -- one of "all" or a list of languages
 	sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
 	ignore_install = { "" }, -- List of parsers to ignore installing
