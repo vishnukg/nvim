@@ -11,7 +11,6 @@ local servers = {
 	"csharp_ls",
 	"emmet_ls",
 	"taplo",
-	"svelte",
 }
 
 local settings = {
