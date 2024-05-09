@@ -45,5 +45,5 @@
   "undotree": { "branch": "master", "commit": "56c684a805fe948936cda0d1b19505b84ad7e065" },
   "vim-fugitive": { "branch": "master", "commit": "ce882460cf3db12e99f8bf579cbf99e331f6dd4f" },
   "vim-test": { "branch": "master", "commit": "eb5bd18d58a859e7d55d732d37e4e2b94fa50275" },
-  "vscode.nvim": { "branch": "main", "commit": "bf62428d842ed1fb9c33353be10af40bac51e825" }
+  "vscode.nvim": { "branch": "main", "commit": "1a2cb491a962acf3bbf53c6d0a61b4ec76012570" }
 }
