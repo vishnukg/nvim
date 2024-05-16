@@ -8,7 +8,6 @@ local servers = {
 	"gopls",
 	"rust_analyzer",
 	"yamlls",
-	"csharp_ls",
 	"emmet_ls",
 	"taplo",
 	"elixirls",
