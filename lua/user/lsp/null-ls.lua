@@ -25,6 +25,7 @@ null_ls.setup({
 		formatting.goimports,
 		formatting.rubocop,
 		formatting.csharpier,
+		diagnostics.pylint,
 		diagnostics.golangci_lint,
 	},
 	on_attach = function(client, bufnr)
