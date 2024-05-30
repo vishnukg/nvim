@@ -23,6 +23,7 @@ null_ls.setup({
 		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.stylua,
 		formatting.goimports,
+		formatting.terraform_fmt,
 		formatting.rubocop,
 		formatting.csharpier,
 		diagnostics.golangci_lint,
