@@ -10,7 +10,7 @@ local servers = {
 	"yamlls",
 	"emmet_ls",
 	"taplo",
-	"elixirls",
+	"terraformls",
 }
 
 local settings = {
