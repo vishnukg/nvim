@@ -56,13 +56,6 @@ return lazy.setup({
 
 	-- Colorscheme
 	"Mofiqul/vscode.nvim",
-	"navarasu/onedark.nvim",
-	{
-		"folke/tokyonight.nvim",
-		lazy = false,
-		priority = 1000,
-		opts = {},
-	},
 
 	-- Commenting code
 	{
@@ -94,20 +87,6 @@ return lazy.setup({
 		"j-hui/fidget.nvim",
 		tag = "legacy",
 	}, -- LSP progress status
-
-	-- need to install efm language server from mason
-	{
-		"creativenull/efmls-configs-nvim",
-		version = "v1.x.x", -- version is optional, but recommended
-		dependencies = { "neovim/nvim-lspconfig" },
-	},
-
-	"lukas-reineke/lsp-format.nvim",
-
-	{ "ray-x/guihua.lua", build = "cd lua/fzy && make" }, -- recommended if need floating window support
-
-	-- Rust language
-	"simrat39/rust-tools.nvim",
 
 	-- Git
 	"lewis6991/gitsigns.nvim",
@@ -151,7 +130,6 @@ return lazy.setup({
 		end,
 	},
 
-	"vim-test/vim-test",
 	-- Indent blankline
 	{
 		"lukas-reineke/indent-blankline.nvim",
