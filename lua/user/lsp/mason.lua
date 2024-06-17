@@ -11,7 +11,6 @@ local servers = {
 	"emmet_ls",
 	"taplo",
 	"terraformls",
-	"eslint",
 }
 
 local settings = {
