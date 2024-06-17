@@ -8,7 +8,6 @@ local formatting = null_ls.builtins.formatting
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 local diagnostics = null_ls.builtins.diagnostics
 
-local completion = null_ls.builtins.completion
 -- LspFormatting
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
@@ -16,10 +15,19 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 -- to the system and then setup it up here so null-ls can use it behind the scenes.
 -- Behind the scenes its uses lua vim.lsp.buf.format to autoformat
 
+-- ***** You can install prettierd using Mason.
+-- If you want to activate prettierd only if the prettier file is there
+-- then do the following under sources
+--  		formatting.prettierd.with({
+-- 			condtion = function(utils)
+-- 				return utils.has_file({ ".prettierrc.js" })
+-- 			end,
+-- 		}),
+
 null_ls.setup({
 	debug = false,
 	sources = {
-		formatting.prettier,
+		formatting.prettierd,
 		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.stylua,
 		formatting.goimports,
@@ -45,3 +53,4 @@ null_ls.setup({
 
 -- Auto formatting on save
 -- vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format({async = true})]])
+--
