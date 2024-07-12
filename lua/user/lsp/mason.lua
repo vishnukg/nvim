@@ -11,6 +11,7 @@ local servers = {
 	"emmet_ls",
 	"taplo",
 	"terraformls",
+	"csharp_ls",
 }
 
 local settings = {
