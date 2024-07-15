@@ -117,6 +117,7 @@ return lazy.setup({
 			"marilari88/neotest-vitest",
 			"nvim-neotest/neotest-go",
 			"nvim-neotest/neotest-python",
+			"Issafalcon/neotest-dotnet",
 		},
 		config = function()
 			require("neotest").setup({
