@@ -126,6 +126,7 @@ return lazy.setup({
 					require("neotest-jest"),
 					require("neotest-vitest"),
 					require("neotest-go"),
+					require("neotest-dotnet"),
 				},
 			})
 		end,
