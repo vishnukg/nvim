@@ -27,7 +27,7 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup({
 	debug = false,
 	sources = {
-		formatting.prettier,
+		formatting.prettier.with({ disabled_filetypes = { "yaml" } }),
 		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.stylua,
 		formatting.goimports,
