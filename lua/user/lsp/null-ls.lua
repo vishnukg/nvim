@@ -34,7 +34,9 @@ null_ls.setup({
 		formatting.terraform_fmt,
 		formatting.rubocop,
 		formatting.csharpier,
+		formatting.yamlfmt,
 		diagnostics.golangci_lint,
+		diagnostics.yamllint,
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then
