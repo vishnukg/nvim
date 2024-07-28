@@ -2,7 +2,7 @@ local servers = {
 	"lua_ls",
 	"html",
 	"tsserver",
-	"pyright",
+	"ruff",
 	"bashls",
 	"jsonls",
 	"gopls",
