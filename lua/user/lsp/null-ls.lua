@@ -35,6 +35,7 @@ null_ls.setup({
 		formatting.rubocop,
 		formatting.csharpier,
 		formatting.yamlfmt,
+		diagnostics.revive,
 		diagnostics.yamllint,
 	},
 	on_attach = function(client, bufnr)
