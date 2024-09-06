@@ -29,7 +29,7 @@
   "nvim-nio": { "branch": "master", "commit": "a428f309119086dc78dd4b19306d2d67be884eee" },
   "nvim-spectre": { "branch": "master", "commit": "ba7fb777edff6c1fbbeffd343e113af64c04e90a" },
   "nvim-tree.lua": { "branch": "master", "commit": "ad0b95dee55955817af635fa121f6e2486b10583" },
-  "nvim-treesitter": { "branch": "master", "commit": "bfe74a4899882a4ef45abb80813f14644a110a34" },
+  "nvim-treesitter": { "branch": "master", "commit": "093b29f2b409278e2ed69a90462fee54714b5a84" },
   "nvim-web-devicons": { "branch": "master", "commit": "9793801f974bba70e4ac5d7eae6c4f5659993d8e" },
   "playground": { "branch": "master", "commit": "ba48c6a62a280eefb7c85725b0915e021a1a0749" },
   "plenary.nvim": { "branch": "master", "commit": "ec289423a1693aeae6cd0d503bac2856af74edaa" },
