@@ -50,6 +50,10 @@ vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[ 
     syntax enable
     filetype plugin indent on
+
+    setlocal foldmethod=indent
+    set nofoldenable
+    set foldlevel=99
 ]])
 vim.opt.iskeyword:append("-") -- hyphenated words recognized by searches
 vim.opt.formatoptions:remove({ "c", "r", "o" }) -- don't insert the current comment leader automatically for auto-wrapping comments using 'textwidth', hitting <Enter> in insert mode, or hitting 'o' or 'O' in normal mode.
