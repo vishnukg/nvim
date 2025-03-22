@@ -6,10 +6,9 @@ local servers = {
 	"bashls",
 	"jsonls",
 	"gopls",
-	"rust_analyzer",
 	"yamlls",
 	"emmet_ls",
-	"taplo",
+  	"taplo",
 	"terraformls",
 }
 
