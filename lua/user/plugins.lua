@@ -105,17 +105,13 @@ return lazy.setup({
 			"nvim-neotest/neotest-jest",
 			"marilari88/neotest-vitest",
 			"nvim-neotest/neotest-go",
-			"nvim-neotest/neotest-python",
-			"Issafalcon/neotest-dotnet",
 		},
 		config = function()
 			require("neotest").setup({
 				adapters = {
-					require("neotest-python"),
 					require("neotest-jest"),
 					require("neotest-vitest"),
 					require("neotest-go"),
-					require("neotest-dotnet"),
 				},
 			})
 		end,
