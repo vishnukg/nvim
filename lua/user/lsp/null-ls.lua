@@ -32,7 +32,6 @@ null_ls.setup({
 		formatting.stylua,
 		formatting.goimports,
 		formatting.terraform_fmt,
-		formatting.rubocop,
 		formatting.csharpier,
 		formatting.yamlfmt,
 		diagnostics.revive,
