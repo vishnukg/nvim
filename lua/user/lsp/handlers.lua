@@ -17,15 +17,15 @@ M.setup = function()
 		{ name = "DiagnosticSignHint", text = "" },
 		{ name = "DiagnosticSignInfo", text = "" },
 	}
-
+	local sign_texts = {}
 	for _, sign in ipairs(signs) do
-		vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+		sign_texts[sign.name] = sign.text
 	end
 
 	local config = {
 		virtual_text = true, -- enable/disable virtual text
 		signs = {
-			active = signs, -- show signs
+			active = sign_texts, -- show signs
 		},
 		update_in_insert = true,
 		underline = true,
