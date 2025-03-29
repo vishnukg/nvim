@@ -42,13 +42,52 @@ M.setup = function()
 
 	vim.diagnostic.config(config)
 
-	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-		border = "rounded",
-	})
+	vim.lsp.handlers["textDocument/hover"] = function(_, result)
+		-- Check if result exists and contains the necessary hover information
+		if not result or not result.contents then
+			return
+		end
 
-	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-		border = "rounded",
-	})
+		-- Prepare content for hover preview
+		local lines = {}
+		if type(result.contents) == "table" then
+			for _, item in ipairs(result.contents) do
+				table.insert(lines, item.value or item)
+			end
+		else
+			table.insert(lines, result.contents)
+		end
+
+		-- Set up the options for the floating window with rounded borders
+		local opts = vim.tbl_deep_extend("force", config or {}, {
+			border = "rounded", -- Add a rounded border
+			focusable = true,
+		})
+
+		-- Open a floating window to display hover information
+		vim.lsp.util.open_floating_preview(lines, "markdown", opts)
+	end
+	vim.lsp.handlers["textDocument/signatureHelp"] = function(_, result)
+		-- Ensure that result is not nil and handle the signature help properly
+		if not result or not result.signatures then
+			return
+		end
+
+		-- Create the signature help content
+		local lines = {}
+		for _, signature in ipairs(result.signatures) do
+			table.insert(lines, signature.label)
+		end
+
+		-- Create a floating window with a rounded border
+		local opts = vim.tbl_deep_extend("force", config or {}, {
+			border = "rounded", -- Add rounded border
+			focusable = true,
+		})
+
+		-- Show the signature help in a floating window
+		vim.lsp.util.open_floating_preview(lines, "plaintext", opts)
+	end
 end
 
 local function lsp_keymaps(bufnr)
