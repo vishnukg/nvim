@@ -25,6 +25,9 @@ require("vscode").setup({
 	-- Disable nvim-tree background color
 	disable_nvimtree_bg = true,
 
+	-- Apply theme colors to terminal
+	terminal_colors = true,
+
 	-- Override colors (see ./lua/vscode/colors.lua)
 	color_overrides = {
 		vscLineNumber = "#464d53",
