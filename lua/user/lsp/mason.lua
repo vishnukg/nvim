@@ -8,8 +8,9 @@ local servers = {
 	"gopls",
 	"yamlls",
 	"emmet_ls",
-  	"taplo",
+	"taplo",
 	"terraformls",
+	"clangd",
 }
 
 local settings = {
