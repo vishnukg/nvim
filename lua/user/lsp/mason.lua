@@ -11,6 +11,7 @@ local servers = {
 	"taplo",
 	"terraformls",
 	"clangd",
+	"omnisharp",
 }
 
 local settings = {
