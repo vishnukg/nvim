@@ -12,6 +12,7 @@ local servers = {
 	"terraformls",
 	"clangd",
 	"omnisharp",
+	"perlnavigator",
 }
 
 local settings = {
