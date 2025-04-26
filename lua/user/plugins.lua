@@ -94,8 +94,6 @@ return lazy.setup({
 	-- Search and Replace
 	"windwp/nvim-spectre",
 
-	-- Vim Go Pluing
-	"fatih/vim-go",
 	-- Testing
 	{
 		"nvim-neotest/neotest",
