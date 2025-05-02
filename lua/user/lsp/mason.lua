@@ -53,7 +53,4 @@ for _, server in pairs(servers) do
 	end
 
 	lspconfig[server].setup(opts)
-	-- Mason doesn't support perl PLS language server. So I'm directly adding it here. Also
-	-- install perl PLS through CPAN module
-	lspconfig["perlpls"].setup(opts)
 end
