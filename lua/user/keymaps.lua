@@ -81,5 +81,5 @@ keymap("n", "<leader>tr", ":Neotest run<CR>", opts)
 keymap("n", "<leader>ts", ":Neotest summary<CR>", opts)
 
 -- Rest.NVIM
-keymap("n", "<leader>hr", ":Rest run<CR>", opts)
-keymap("n", "<leader>ho", ":Rest open<CR>", opts)
+keymap("n", "<leader>ht", ":Rest run<CR>", opts)
+keymap("n", "<leader>hto", ":Rest open<CR>", opts)
