@@ -79,3 +79,7 @@ keymap("n", "<leader>df", ":windo diffthis<CR>", opts)
 -- Neotest runner
 keymap("n", "<leader>tr", ":Neotest run<CR>", opts)
 keymap("n", "<leader>ts", ":Neotest summary<CR>", opts)
+
+-- Rest.NVIM
+keymap("n", "<leader>hr", ":Rest run<CR>", opts)
+keymap("n", "<leader>ho", ":Rest open<CR>", opts)
