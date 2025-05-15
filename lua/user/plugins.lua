@@ -137,9 +137,9 @@ return lazy.setup({
     {
         "mistweaverco/kulala.nvim",
         keys = {
-            { "<leader>re",  desc = "Send request" },
-            { "<leader>rea", desc = "Send all requests" },
-            { "<leader>res", desc = "Open scratchpad" },
+            { "<leader>rq",  desc = "Send request" },
+            { "<leader>rqa", desc = "Send all requests" },
+            { "<leader>rqs", desc = "Open scratchpad" },
         },
         ft = { "http", "rest" },
         opts = {
