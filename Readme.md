@@ -32,3 +32,12 @@ Commands:
 4. :LspInfo -> Shows information about the attached LSP clients in the current buffer.
 5. :NullLsInfo -> Shows information about the attached null-ls clients in the current buffer.
 
+A bit more context on how vim lsp and mason work together
+
+vim.lsp (Neovim's built-in LSP client, enhanced in v0.11): This is the core engine within Neovim that understands the Language Server Protocol. It allows Neovim to communicate with language servers (once they are running and Neovim knows how to talk to them). It provides the APIs for features like go-to-definition, hover, diagnostics, etc. However, vim.lsp itself does not install or manage the language server programs/binaries.
+
+nvim-lspconfig (a community plugin, but very widely used): This plugin provides a collection of default configurations for a vast number of language servers. It tells vim.lsp how to start and communicate with specific servers (e.g., "for pyright, use this command: pyright-langserver --stdio"). It standardizes the setup for many servers. It also does not install the server binaries themselves.
+
+mason.nvim: This is a package manager. Its job is to download, install, and manage external tools like language servers, linters, formatters, and debug adapters. It ensures the actual server programs (e.g., the lua-language-server executable, ts_ls executable) are available on your system in a predictable location.
+
+mason-lspconfig.nvim: This plugin acts as a bridge. It tells nvim-lspconfig where mason.nvim has installed the server binaries. It also often handles the ensure_installed logic, triggering Mason to install servers if they're missing.
