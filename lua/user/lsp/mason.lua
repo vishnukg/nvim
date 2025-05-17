@@ -14,50 +14,43 @@ local servers = {
     "omnisharp",
 }
 
-local mason_settings = {
+local settings = {
     ui = {
         border = "none",
         icons = {
-            package_installed = "✓", -- Checkmark for installed
-            package_pending = "⏳", -- Hourglass for pending/installing
-            package_uninstalled = "✗", -- Crossmark for uninstalled
+            package_installed = "✓",
+            package_pending = "⏳",
+            package_uninstalled = "✗",
         },
     },
     log_level = vim.log.levels.INFO,
     max_concurrent_installers = 4,
 }
 
-require("mason").setup(mason_settings)
-
-local mason_lspconfig_settings = {
+require("mason").setup(settings)
+require("mason-lspconfig").setup({
     ensure_installed = servers,
     automatic_installation = true,
-}
-require("mason-lspconfig").setup(mason_lspconfig_settings)
+})
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then
-    vim.notify("lspconfig not found!", vim.log.levels.ERROR)
     return
 end
 
-local handlers = require("user.lsp.handlers")
+local opts = {}
 
-for _, server in ipairs(servers) do
-    local server_name = vim.split(server, "@")[1]
-    local opts = {
-        on_attach = handlers.on_attach,
-        capabilities = handlers.capabilities,
-        settings = {
-            [server_name] = {},
-        },
+for _, server in pairs(servers) do
+    opts = {
+        on_attach = require("user.lsp.handlers").on_attach,
+        capabilities = require("user.lsp.handlers").capabilities,
     }
+    server = vim.split(server, "@")[1]
 
-    local config_module_name = "user.lsp.settings." .. server_name
-    local require_ok, conf_opts = pcall(require, config_module_name)
+    local require_ok, conf_opts = pcall(require, "user.lsp.settings." .. server)
     if require_ok then
-        opts.settings[server_name] = vim.tbl_deep_extend("force", opts.settings[server_name] or {}, conf_opts or {})
+        opts = vim.tbl_deep_extend("force", conf_opts, opts)
     end
 
-    lspconfig[server_name].setup(opts)
+    lspconfig[server].setup(opts)
 end
