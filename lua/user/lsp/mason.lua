@@ -45,6 +45,7 @@ local settings = {
 require("mason").setup(settings)
 require("mason-null-ls").setup({
 	ensure_installed = lint_and_format,
+	automatic_installation = true,
 })
 require("mason-lspconfig").setup({
 	ensure_installed = lsp_servers,
