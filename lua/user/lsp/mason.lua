@@ -26,7 +26,7 @@ local lsp_servers = {
 	"taplo",
 	"terraformls",
 	"clangd",
-	"omnisharp",
+	"csharp_ls",
 }
 
 local settings = {
