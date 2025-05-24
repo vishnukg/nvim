@@ -17,7 +17,7 @@ local lsp_servers = {
 	"lua_ls",
 	"html",
 	"ts_ls",
-	"pyright",
+	"basedpyright",
 	"bashls",
 	"jsonls",
 	"gopls",
