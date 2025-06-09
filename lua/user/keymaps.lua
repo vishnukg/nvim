@@ -83,3 +83,10 @@ keymap("n", "<leader>ts", ":Neotest summary<CR>", opts)
 -- Rest.NVIM
 keymap("n", "<leader>ht", ":Rest run<CR>", opts)
 keymap("n", "<leader>hto", ":Rest open<CR>", opts)
+
+--Copilot chat and copilot
+keymap("n", "<leader>ce", ":Copilot enable", opts)
+keymap("n", "<leader>cd", ":Copilot disable", opts)
+keymap("n", "<leader>cpe", ":CopilotChatExplain", opts)
+keymap("n", "<leader>cpt", ":CopilotChatTests", opts)
+keymap("n", "<leader>cpr", ":CopilotChatReset", opts)
