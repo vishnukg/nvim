@@ -4,6 +4,7 @@ local lint_and_format = {
 	"revive",
 	"stylelint",
 	"yamllint",
+    "eslint_d",
 	-- Formatters
 	"black",
 	"clang-format",

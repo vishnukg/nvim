@@ -82,11 +82,21 @@ return lazy.setup({
 	"neovim/nvim-lspconfig", -- enable LSP
 	"williamboman/mason.nvim", -- simple to use language server installer
 	"williamboman/mason-lspconfig.nvim", -- simple to use language server installer
-	"nvimtools/none-ls.nvim", -- Replacing none ls with null-ls
+
+	-- None ls helps with formatting and linting
+	{
+		"nvimtools/none-ls.nvim",
+		dependencies = {
+			"nvimtools/none-ls-extras.nvim",
+		},
+	},
+
+	-- LSP progress status
 	{
 		"j-hui/fidget.nvim",
 		tag = "legacy",
-	}, -- LSP progress status
+	},
+
 	-- Mason null-ls
 	"jay-babu/mason-null-ls.nvim",
 	event = { "BufReadPre", "BufNewFile" },
