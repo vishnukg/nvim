@@ -157,4 +157,12 @@ return lazy.setup({
 		},
 		-- See Commands section for default commands if you want to lazy load on them
 	},
+	-- dotnet.nvim
+	{
+		"GustavEikaas/easy-dotnet.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+		config = function()
+			require("easy-dotnet").setup()
+		end,
+	},
 })
