@@ -4,7 +4,7 @@ local lint_and_format = {
 	"revive",
 	"stylelint",
 	"yamllint",
-    "eslint_d",
+	"eslint_d",
 	-- Formatters
 	"black",
 	"clang-format",
@@ -27,7 +27,6 @@ local lsp_servers = {
 	"taplo",
 	"terraformls",
 	"clangd",
-	"csharp_ls",
 }
 
 local settings = {
@@ -41,6 +40,10 @@ local settings = {
 	},
 	log_level = vim.log.levels.INFO,
 	max_concurrent_installers = 4,
+	registries = {
+		"github:mason-org/mason-registry",
+		"github:Crashdummyy/mason-registry",
+	},
 }
 
 require("mason").setup(settings)
