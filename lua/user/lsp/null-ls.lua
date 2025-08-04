@@ -34,7 +34,6 @@ null_ls.setup({
 		formatting.terraform_fmt,
 		formatting.csharpier,
 		formatting.yamlfmt,
-		formatting.clang_format,
 		diagnostics.revive,
 		diagnostics.yamllint,
 		require("none-ls.diagnostics.eslint"),
