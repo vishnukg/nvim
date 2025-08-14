@@ -122,7 +122,7 @@ return lazy.setup({
 			"nvim-neotest/neotest-jest",
 			"marilari88/neotest-vitest",
 			"nvim-neotest/neotest-go",
-			"issafalcon/neotest-dotnet",
+			"nsidorenco/neotest-vstest",
 		},
 		config = function()
 			require("neotest").setup({
@@ -130,7 +130,7 @@ return lazy.setup({
 					require("neotest-jest"),
 					require("neotest-vitest"),
 					require("neotest-go"),
-					require("neotest-dotnet"),
+					require("neotest-vstest"),
 				},
 			})
 		end,
@@ -164,14 +164,6 @@ return lazy.setup({
 		config = function()
 			require("easy-dotnet").setup()
 		end,
-	},
-	{
-		"seblyng/roslyn.nvim",
-		---@module 'roslyn.config'
-		---@type RoslynNvimConfig
-		opts = {
-			-- your configuration comes here; leave empty for default settings
-		},
 	},
 	{
 		"ray-x/go.nvim",
