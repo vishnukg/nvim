@@ -86,6 +86,7 @@ keymap("n", "<leader>ht", ":Rest run<CR>", opts)
 keymap("n", "<leader>hto", ":Rest open<CR>", opts)
 
 --Copilot chat and copilot
+keymap("n", "<leader>cpe", ":CopilotChat<CR>", opts)
 keymap("n", "<leader>cpe", ":CopilotChatExplain<CR>", opts)
 keymap("n", "<leader>cpt", ":CopilotChatTests<CR>", opts)
 keymap("n", "<leader>cpr", ":CopilotChatReset<CR>", opts)
