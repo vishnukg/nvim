@@ -196,7 +196,26 @@ return lazy.setup({
 		tag = "1.0.0", -- or: branch = 'release/1.x' for latest non-breaking updates
 		event = "LspAttach",
 		config = function()
-			require("lensline").setup()
+			require("lensline").setup({
+				providers = {
+					{
+						name = "references",
+						enabled = true, -- enable references provider
+						quiet_lsp = true, -- suppress noisy LSP log messages (e.g., Pyright reference spam)
+					},
+					{
+
+						name = "last_author",
+						enabled = false, -- enabled by default with caching optimization
+						cache_max_files = 50, -- maximum number of files to cache blame data for (default: 50)
+					},
+					{
+						name = "complexity",
+						enabled = true, -- disabled by default - enable explicitly to use
+						min_level = "M", -- only show L (Large) and XL (Extra Large) complexity by default
+					},
+				},
+			})
 		end,
 	},
 })
