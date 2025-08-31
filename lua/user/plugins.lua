@@ -212,7 +212,7 @@ return lazy.setup({
 					{
 						name = "complexity",
 						enabled = true, -- disabled by default - enable explicitly to use
-						min_level = "M", -- only show L (Large) and XL (Extra Large) complexity by default
+						min_level = "L", -- only show L (Large) and XL (Extra Large) complexity by default
 					},
 				},
 			})
