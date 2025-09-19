@@ -1,3 +1,6 @@
+-- =========================
+-- Linting/Formatting Tools
+-- =========================
 local lint_and_format = {
 	-- Linters
 	"pylint",
@@ -13,6 +16,9 @@ local lint_and_format = {
 	"yamlfmt",
 }
 
+-- =========================
+-- LSP Servers
+-- =========================
 local lsp_servers = {
 	"lua_ls",
 	"html",
@@ -28,7 +34,10 @@ local lsp_servers = {
 	"csharp_ls",
 }
 
-local settings = {
+-- =========================
+-- Mason Setup
+-- =========================
+require("mason").setup({
 	ui = {
 		border = "none",
 		icons = {
@@ -39,37 +48,48 @@ local settings = {
 	},
 	log_level = vim.log.levels.INFO,
 	max_concurrent_installers = 4,
-}
+})
 
-require("mason").setup(settings)
+-- =========================
+-- Mason-null-ls Setup
+-- =========================
 require("mason-null-ls").setup({
 	ensure_installed = lint_and_format,
 	automatic_installation = true,
 })
+
+-- =========================
+-- Mason-lspconfig Setup
+-- =========================
 require("mason-lspconfig").setup({
 	ensure_installed = lsp_servers,
 	automatic_installation = true,
 	automatic_enable = false,
 })
 
+-- =========================
+-- LSP Servers Setup
+-- =========================
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then
 	return
 end
 
-local opts = {}
+for _, server in ipairs(lsp_servers) do
+	server = vim.split(server, "@")[1]
 
-for _, server in pairs(lsp_servers) do
-	opts = {
+	-- Base options
+	local opts = {
 		on_attach = require("user.lsp.handlers").on_attach,
 		capabilities = require("user.lsp.handlers").capabilities,
 	}
-	server = vim.split(server, "@")[1]
 
-	local require_ok, conf_opts = pcall(require, "user.lsp.settings." .. server)
-	if require_ok then
-		opts = vim.tbl_deep_extend("force", conf_opts, opts)
+	-- Merge server-specific settings if available
+	local ok, server_opts = pcall(require, "user.lsp.settings." .. server)
+	if ok then
+		opts = vim.tbl_deep_extend("force", opts, server_opts)
 	end
 
+	-- Setup the server using lspconfig (fully supported, attaches to buffers)
 	lspconfig[server].setup(opts)
 end
