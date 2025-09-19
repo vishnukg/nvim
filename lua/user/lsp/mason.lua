@@ -58,7 +58,7 @@ require("mason-lspconfig").setup({
 })
 
 -- Setup LSP servers using the new vim.lsp.config API
-local lspconfig_status_ok, lspconfig = pcall(require, "vim.lsp.config")
+local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then
 	return
 end
