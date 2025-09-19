@@ -68,13 +68,8 @@ require("mason-lspconfig").setup({
 })
 
 -- =========================
--- LSP Servers Setup
+-- LSP Servers Setup (new API)
 -- =========================
-local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
-if not lspconfig_status_ok then
-	return
-end
-
 for _, server in ipairs(lsp_servers) do
 	server = vim.split(server, "@")[1]
 
@@ -90,6 +85,9 @@ for _, server in ipairs(lsp_servers) do
 		opts = vim.tbl_deep_extend("force", opts, server_opts)
 	end
 
-	-- Setup the server using lspconfig (fully supported, attaches to buffers)
-	lspconfig[server].setup(opts)
+	-- Register server config (instead of lspconfig[server].setup)
+	vim.lsp.config(server, opts)
+
+	-- Enable it (activates based on filetype)
+	vim.lsp.enable(server)
 end
