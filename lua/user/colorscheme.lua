@@ -1,10 +1,9 @@
 -- vscode color settings
 local colorscheme = "vscode"
 
-local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
-if not status_ok then
-	return
-end
+pcall(function()
+	vim.cmd("colorscheme " .. colorscheme)
+end)
 
 vim.o.background = "dark"
 
