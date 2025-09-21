@@ -9,33 +9,16 @@ vim.o.background = "dark"
 
 local c = require("vscode.colors").get_colors()
 require("vscode").setup({
-	-- Alternatively set style in setup
 	style = "dark",
-
-	-- Enable transparent background
 	transparent = true,
-
-	-- Enable italic comment
 	italic_comments = true,
-
-	-- Underline `@markup.link.*` variants
 	underline_links = true,
-
-	-- Disable nvim-tree background color
 	disable_nvimtree_bg = true,
-
-	-- Apply theme colors to terminal
 	terminal_colors = true,
-
-	-- Override colors (see ./lua/vscode/colors.lua)
 	color_overrides = {
 		vscLineNumber = "#464d53",
 	},
-
-	-- Override highlight groups (see ./lua/vscode/theme.lua)
 	group_overrides = {
-		-- this supports the same val table as vim.api.nvim_set_hl
-		-- use colors from this colorscheme by requiring vscode.colors!
 		Cursor = { fg = c.vscDarkBlue, bg = c.vscLightGreen, bold = true },
 	},
 })
@@ -44,7 +27,15 @@ vim.cmd.colorscheme("vscode")
 
 vim.api.nvim_set_hl(0, "Visual", { bg = "#338fcc", fg = "None" })
 vim.api.nvim_set_hl(0, "CursorLine", { bg = "#464d53", fg = "None" })
-
--- hi Pmenu bg=color to set popup menu background
--- hi PmenuSel bg=color to set popup menu selection background
 vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#4da9ff", fg = "None" })
+
+-- ===== Floating window styling =====
+-- Default float windows (hover, signature help, etc.)
+vim.api.nvim_set_hl(0, "FloatBorder", { fg = c.vscWhite, bold = true })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = c.vscBack }) -- theme background
+
+-- Diagnostics floats (use palette colors)
+vim.api.nvim_set_hl(0, "DiagnosticFloatingError", { fg = c.vscRed, bg = c.vscBackLight, bold = true })
+vim.api.nvim_set_hl(0, "DiagnosticFloatingWarn", { fg = c.vscYellow, bg = c.vscBackLight, bold = true })
+vim.api.nvim_set_hl(0, "DiagnosticFloatingInfo", { fg = c.vscBlue, bg = c.vscBackLight, bold = true })
+vim.api.nvim_set_hl(0, "DiagnosticFloatingHint", { fg = c.vscLightBlue, bg = c.vscBackLight, bold = true })
