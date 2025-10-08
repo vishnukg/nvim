@@ -11,7 +11,7 @@ return {
 			},
 			staticcheck = true, -- enables extra checks from staticcheck
 			gofumpt = true, -- use stricter formatting
-			buildFlags = { "-tags=integration unittest" },
+			buildFlags = { "-tags=unitTests journeyTests" },
 		},
 	},
 }
