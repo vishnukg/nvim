@@ -95,7 +95,7 @@ nvim_tree.setup({
 	},
 	git = {
 		enable = true,
-		ignore = false,
+		ignore = true,
 		timeout = 500,
 	},
 	renderer = {
@@ -128,6 +128,7 @@ nvim_tree.setup({
 	},
 	filters = {
 		dotfiles = false,
+		custom = { "node_modules", "vendor", "bin", "obj", "out" },
 	},
 	actions = {
 		open_file = {
