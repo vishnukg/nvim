@@ -128,7 +128,7 @@ nvim_tree.setup({
 	},
 	filters = {
 		dotfiles = false,
-		custom = { "node_modules", "vendor", "bin", "obj", "out" },
+		custom = {},
 	},
 	actions = {
 		open_file = {
