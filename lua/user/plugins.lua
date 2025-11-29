@@ -191,31 +191,4 @@ return lazy.setup({
 		ft = { "go", "gomod" },
 		build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
 	},
-	{
-		"oribarilan/lensline.nvim",
-		tag = "1.0.0", -- or: branch = 'release/1.x' for latest non-breaking updates
-		event = "LspAttach",
-		config = function()
-			require("lensline").setup({
-				providers = {
-					{
-						name = "references",
-						enabled = true, -- enable references provider
-						quiet_lsp = true, -- suppress noisy LSP log messages (e.g., Pyright reference spam)
-					},
-					{
-
-						name = "last_author",
-						enabled = false, -- enabled by default with caching optimization
-						cache_max_files = 50, -- maximum number of files to cache blame data for (default: 50)
-					},
-					{
-						name = "complexity",
-						enabled = false, -- disabled by default - enable explicitly to use
-						min_level = "L", -- only show L (Large) and XL (Extra Large) complexity by default
-					},
-				},
-			})
-		end,
-	},
 })
