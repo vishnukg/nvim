@@ -36,7 +36,18 @@ null_ls.setup({
 		formatting.yamlfmt,
 		diagnostics.golangci_lint,
 		diagnostics.yamllint,
-		require("none-ls.diagnostics.eslint"),
+		require("none-ls.diagnostics.eslint").with({
+			condition = function(utils)
+				return utils.root_has_file({
+					".eslintrc",
+					".eslintrc.js",
+					".eslintrc.json",
+					".eslintrc.yaml",
+					".eslintrc.yml",
+					"eslint.config.js",
+				})
+			end,
+		}),
 	},
 	on_attach = lsp_format_on_save,
 })
