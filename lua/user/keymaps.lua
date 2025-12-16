@@ -90,3 +90,6 @@ keymap("n", "<leader>cpe", ":CopilotChat<CR>", opts)
 keymap("n", "<leader>cpe", ":CopilotChatExplain<CR>", opts)
 keymap("n", "<leader>cpt", ":CopilotChatTests<CR>", opts)
 keymap("n", "<leader>cpr", ":CopilotChatReset<CR>", opts)
+
+--Vim Code Diff
+keymap("n", "<leader>cd", ":CodeDiff<CR>", opts)
