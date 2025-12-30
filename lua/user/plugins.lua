@@ -40,7 +40,7 @@ return lazy.setup({
 		end,
 	},
 	{ "nvim-tree/nvim-web-devicons", lazy = true },
-	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+	{ "nvim-treesitter/nvim-treesitter", lazy = false, build = ":TSUpdate" },
 	"mbbill/undotree",
 	"tpope/vim-fugitive",
 	"windwp/nvim-autopairs", -- Autopairs, integrates with both cmp and treesitter
@@ -128,6 +128,10 @@ return lazy.setup({
 					require("neotest-go")({
 						experimental = { test_table = true },
 						args = { "-v" },
+						cwd = function()
+							return vim.fn.getcwd()
+						end,
+						test_pattern = { "*_test.go" },
 					}),
 					require("neotest-jest")({
 						jestCommand = "npm test --",
@@ -138,10 +142,12 @@ return lazy.setup({
 					}),
 					require("neotest-vitest")({
 						filter_dir = function(name)
-							return name ~= "node_modules"
+							return name ~= "node_modules" and name ~= ".git" and name ~= "dist"
+						end,
+						cwd = function()
+							return vim.fn.getcwd()
 						end,
 					}),
-					-- New: vstest configuration
 					require("neotest-vstest")({}),
 				},
 				summary = {
