@@ -77,10 +77,10 @@ keymap("n", "<leader>gt", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 keymap("n", "<leader>df", ":windo diffthis<CR>", opts)
 
 -- Neotest runner
-keymap("n", "<leader>tr", ":Neotest run<CR>", opts)
-keymap("n", "<leader>tf", ":Neotest run file<CR>", opts)
-keymap("n", "<leader>ts", ":Neotest summary<CR>", opts)
-keymap("n", "<leader>to", ":Neotest output<CR>", opts)
+keymap("n", "<leader>tr", ":lua require('neotest').run.run()<CR>", opts)
+keymap("n", "<leader>tf", ":lua require('neotest').run.run(vim.fn.expand('%'))<CR>", opts)
+keymap("n", "<leader>ts", ":lua require('neotest').summary.toggle()<CR>", opts)
+keymap("n", "<leader>to", ":lua require('neotest').output.open({ enter = true })<CR>", opts)
 
 -- Rest.NVIM
 keymap("n", "<leader>ht", ":Rest run<CR>", opts)

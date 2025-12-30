@@ -116,6 +116,7 @@ return lazy.setup({
 		"nvim-neotest/neotest",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
+			"nvim-neotest/nvim-nio",
 			"nvim-treesitter/nvim-treesitter",
 			"antoinemadec/FixCursorHold.nvim",
 			"nvim-neotest/neotest-jest",
@@ -126,10 +127,10 @@ return lazy.setup({
 		config = function()
 			require("neotest").setup({
 				adapters = {
-					require("neotest-jest"),
-					require("neotest-vitest"),
-					require("neotest-go"),
-					require("neotest-vstest"),
+					require("neotest-jest")({}),
+					require("neotest-vitest")({}),
+					require("neotest-go")({}),
+					require("neotest-vstest")({}),
 				},
 			})
 		end,
