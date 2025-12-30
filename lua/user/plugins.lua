@@ -125,10 +125,27 @@ return lazy.setup({
 		config = function()
 			require("neotest").setup({
 				adapters = {
-					require("neotest-jest")({}),
-					require("neotest-vitest")({}),
-					require("neotest-go")({}),
+					require("neotest-go")({
+						experimental = { test_table = true },
+						args = { "-v" },
+					}),
+					require("neotest-jest")({
+						jestCommand = "npm test --",
+						env = { CI = true },
+						cwd = function()
+							return vim.fn.getcwd()
+						end,
+					}),
+					require("neotest-vitest")({
+						filter_dir = function(name)
+							return name ~= "node_modules"
+						end,
+					}),
+					-- New: vstest configuration
 					require("neotest-vstest")({}),
+				},
+				summary = {
+					enabled = true,
 				},
 			})
 		end,
