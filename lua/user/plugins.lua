@@ -42,7 +42,6 @@ return lazy.setup({
 	},
 	{ "nvim-tree/nvim-web-devicons", lazy = true },
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-	"nvim-treesitter/playground",
 	"mbbill/undotree",
 	"tpope/vim-fugitive",
 	"windwp/nvim-autopairs", -- Autopairs, integrates with both cmp and treesitter
