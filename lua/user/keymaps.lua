@@ -78,6 +78,7 @@ keymap("n", "<leader>df", ":windo diffthis<CR>", opts)
 
 -- Neotest runner
 keymap("n", "<leader>tr", ":Neotest run<CR>", opts)
+keymap("n", "<leader>tf", ":Neotest run file<CR>", opts)
 keymap("n", "<leader>ts", ":Neotest summary<CR>", opts)
 keymap("n", "<leader>to", ":Neotest output<CR>", opts)
 
