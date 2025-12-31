@@ -69,28 +69,28 @@ keymap("n", "<leader>sw", "<cmd>lua require('spectre').open_visual({select_word=
 keymap("n", "<leader>s", "<esc>:lua require('spectre').open_visual()<CR>", opts)
 
 -- Toggle Term
-keymap("n", "<leader>tv", ":ToggleTerm size=90 direction=vertical<CR>", opts)
-keymap("n", "<leader>th", ":ToggleTerm size=20 direction=horizontal<CR>", opts)
+keymap("n", "<leader>tv", "<cmd>ToggleTerm size=90 direction=vertical<CR>", opts)
+keymap("n", "<leader>th", "<cmd>ToggleTerm size=20 direction=horizontal<CR>", opts)
 keymap("n", "<leader>gt", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 
 -- Diff two files in the split buffers
 keymap("n", "<leader>df", ":windo diffthis<CR>", opts)
 
 -- Neotest runner
-keymap("n", "<leader>tr", ":lua require('neotest').run.run()<CR>", opts)
-keymap("n", "<leader>tf", ":lua require('neotest').run.run(vim.fn.expand('%'))<CR>", opts)
-keymap("n", "<leader>ts", ":lua require('neotest').summary.toggle()<CR>", opts)
-keymap("n", "<leader>to", ":lua require('neotest').output.open({ enter = true })<CR>", opts)
+keymap("n", "<leader>tr", "<cmd>lua require('neotest').run.run()<CR>", opts)
+keymap("n", "<leader>tf", "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<CR>", opts)
+keymap("n", "<leader>ts", "<cmd>lua require('neotest').summary.toggle()<CR>", opts)
+keymap("n", "<leader>to", "<cmd>lua require('neotest').output.open({ enter = true })<CR>", opts)
 
 -- Rest.NVIM
-keymap("n", "<leader>ht", ":Rest run<CR>", opts)
-keymap("n", "<leader>hto", ":Rest open<CR>", opts)
+keymap("n", "<leader>ht", "<cmd>Rest run<CR>", opts)
+keymap("n", "<leader>hto", "<cmd>Rest open<CR>", opts)
 
 --Copilot chat and copilot
-keymap("n", "<leader>cpe", ":CopilotChat<CR>", opts)
-keymap("n", "<leader>cpe", ":CopilotChatExplain<CR>", opts)
-keymap("n", "<leader>cpt", ":CopilotChatTests<CR>", opts)
-keymap("n", "<leader>cpr", ":CopilotChatReset<CR>", opts)
+keymap("n", "<leader>cp", "<cmd>CopilotChat<CR>", opts)
+keymap("n", "<leader>cpe", "<cmd>CopilotChatExplain<CR>", opts)
+keymap("n", "<leader>cpt", "<cmd>CopilotChatTests<CR>", opts)
+keymap("n", "<leader>cpr", "<cmd>CopilotChatReset<CR>", opts)
 
 --Vim Code Diff
-keymap("n", "<leader>cd", ":CodeDiff<CR>", opts)
+keymap("n", "<leader>cd", "<cmd>CodeDiff<CR>", opts)
