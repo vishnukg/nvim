@@ -2,17 +2,12 @@
 return {
 	settings = {
 		Lua = {
-			diagnostics = {
-				globals = { "vim" },
-			},
+			diagnostics = { globals = { "vim" } },
 			workspace = {
-				-- Make the server aware of Neovim runtime files for better completion
-				library = vim.api.nvim_get_runtime_file("", true),
-				checkThirdParty = false, -- Avoid diagnosing luarocks libraries
+				library = { vim.env.VIMRUNTIME .. "/lua" },
+				checkThirdParty = false,
 			},
-			telemetry = {
-				enable = false,
-			},
+			telemetry = { enable = false },
 		},
 	},
 }
