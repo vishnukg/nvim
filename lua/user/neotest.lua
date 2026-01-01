@@ -42,6 +42,9 @@ if has_file(vitest_configs) then
 			cwd = function()
 				return vim.fn.getcwd()
 			end,
+			filter_dir = function(name, rel_path, root)
+				return not (name == "node_modules" or name == "dist")
+			end,
 		})
 	)
 end
@@ -54,6 +57,9 @@ if has_file(jest_configs) then
 			env = { CI = true },
 			cwd = function()
 				return vim.fn.getcwd()
+			end,
+			filter_dir = function(name, rel_path, root)
+				return not (name == "node_modules" or name == "dist")
 			end,
 		})
 	)
@@ -68,6 +74,9 @@ if not has_file(vitest_configs) and not has_file(jest_configs) then
 			env = { CI = true },
 			cwd = function()
 				return vim.fn.getcwd()
+			end,
+			filter_dir = function(name, rel_path, root)
+				return not (name == "node_modules" or name == "dist")
 			end,
 		})
 	)
