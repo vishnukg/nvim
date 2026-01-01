@@ -33,6 +33,7 @@ local adapters = {
 		end,
 		test_pattern = { "*_test.go" },
 	}),
+	require("neotest-vstest")({}),
 }
 
 if has_file(vitest_configs) then
