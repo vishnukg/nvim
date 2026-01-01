@@ -122,39 +122,6 @@ return lazy.setup({
 			"nvim-neotest/neotest-go",
 			"nsidorenco/neotest-vstest",
 		},
-		config = function()
-			require("neotest").setup({
-				adapters = {
-					require("neotest-go")({
-						experimental = { test_table = true },
-						args = { "-v" },
-						cwd = function()
-							return vim.fn.getcwd()
-						end,
-						test_pattern = { "*_test.go" },
-					}),
-					require("neotest-jest")({
-						jestCommand = "npm test --",
-						env = { CI = true },
-						cwd = function()
-							return vim.fn.getcwd()
-						end,
-					}),
-					require("neotest-vitest")({
-						filter_dir = function(name)
-							return name ~= "node_modules" and name ~= ".git" and name ~= "dist"
-						end,
-						cwd = function()
-							return vim.fn.getcwd()
-						end,
-					}),
-					require("neotest-vstest")({}),
-				},
-				summary = {
-					enabled = true,
-				},
-			})
-		end,
 	},
 
 	-- Indent blankline
