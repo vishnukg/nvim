@@ -45,6 +45,7 @@ null_ls.setup({
 					".eslintrc.yaml",
 					".eslintrc.yml",
 					"eslint.config.js",
+					"eslint.config.mjs",
 				})
 			end,
 		}),
