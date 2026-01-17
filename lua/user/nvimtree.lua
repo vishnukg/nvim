@@ -142,7 +142,9 @@ nvim_tree.setup({
 -- Autoclose nvim_tree native option
 -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Auto-Close#naive-solution
 
+local nvimtree_augroup = vim.api.nvim_create_augroup("NvimTreeAutoClose", { clear = true })
 vim.api.nvim_create_autocmd("BufEnter", {
+	group = nvimtree_augroup,
 	nested = true,
 	callback = function()
 		if #vim.api.nvim_list_wins() == 1 and require("nvim-tree.utils").is_nvim_tree_buf() then
