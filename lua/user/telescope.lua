@@ -7,7 +7,7 @@ local actions = require("telescope.actions")
 
 telescope.setup({
 	defaults = {
-		initial_mode = "normal",
+		initial_mode = "insert",
 		prompt_prefix = " ",
 		selection_caret = " ",
 		path_display = { "smart" },
