@@ -1,4 +1,3 @@
---
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -6,108 +5,121 @@ if not vim.loop.fs_stat(lazypath) then
 		"clone",
 		"--filter=blob:none",
 		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
+		"--branch=stable",
 		lazypath,
 	})
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Use a protected call so we don't error out on first use
 local status_ok, lazy = pcall(require, "lazy")
 if not status_ok then
 	return
 end
 
--- Install your plugins here
 return lazy.setup({
-	-- Basic plugins here
-	"nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
-	"nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
-	{
-		"nvim-telescope/telescope.nvim",
-		tag = "v0.2.0",
-		dependencies = { "nvim-lua/plenary.nvim" },
-	},
+
+	-- Core Lua functions and utilities
+	"nvim-lua/popup.nvim",
+	"nvim-lua/plenary.nvim",
+
+	-- UI Enhancements
 	{
 		"nvim-tree/nvim-tree.lua",
 		version = "*",
 		lazy = false,
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-		},
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
 			require("nvim-tree").setup({})
 		end,
+		cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
 	},
 	{ "nvim-tree/nvim-web-devicons", lazy = true },
-	{ "nvim-treesitter/nvim-treesitter", lazy = false, branch = "master", build = ":TSUpdate" },
-	"mbbill/undotree",
-	"tpope/vim-fugitive",
-	"windwp/nvim-autopairs", -- Autopairs, integrates with both cmp and treesitter
-	"akinsho/toggleterm.nvim",
-
-	-- Lualine
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons", opt = true },
+		event = "VimEnter",
+	},
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		opts = { indent = { char = "╎" } },
+		event = { "BufReadPre", "BufNewFile" },
 	},
 
 	-- Colorscheme
 	"Mofiqul/vscode.nvim",
 
-	-- Commenting code
+	-- Fuzzy Finder
+	{
+		"nvim-telescope/telescope.nvim",
+		tag = "v0.2.0",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		cmd = "Telescope",
+	},
+
+	-- Treesitter
+	{ "nvim-treesitter/nvim-treesitter", lazy = false, branch = "master", build = ":TSUpdate" },
+
+	-- Autopairs
+	{ "windwp/nvim-autopairs", event = "InsertEnter" },
+
+	-- Terminal Integration
+	{ "akinsho/toggleterm.nvim", cmd = "ToggleTerm" },
+
+	-- Undo Tree
+	{ "mbbill/undotree", cmd = "UndotreeToggle" },
+
+	-- Git Integration
+	{ "tpope/vim-fugitive", cmd = { "Git", "G" } },
+	{ "lewis6991/gitsigns.nvim", event = { "BufReadPre", "BufNewFile" } },
+
+	-- Search and Replace
+	{ "windwp/nvim-spectre", cmd = "Spectre" },
+
+	-- Commenting
 	{
 		"numToStr/Comment.nvim",
 		config = function()
 			require("Comment").setup()
 		end,
+		event = { "BufReadPost", "BufNewFile" },
 	},
 
-	-- cmp plugins
-	"hrsh7th/nvim-cmp", -- The completion plugin
-	"hrsh7th/cmp-buffer", -- buffer completions
-	"hrsh7th/cmp-path", -- path completions
-	"hrsh7th/cmp-cmdline", -- cmdline completions
-	"saadparwaiz1/cmp_luasnip", -- snippet completions
-	"hrsh7th/cmp-nvim-lsp",
-	"hrsh7th/cmp-nvim-lua",
+	-- Completion Plugins (nvim-cmp and sources)
+	{ "hrsh7th/nvim-cmp", event = "InsertEnter" },
+	{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
+	{ "hrsh7th/cmp-path", after = "nvim-cmp" },
+	{ "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
+	{ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
+	{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
+	{ "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" },
 
-	-- snippets
-	"L3MON4D3/LuaSnip", --snippet engine
-	"rafamadriz/friendly-snippets", -- a bunch of snippets to use
+	-- Snippets
+	{ "L3MON4D3/LuaSnip", event = "InsertEnter" },
+	{ "rafamadriz/friendly-snippets", event = "InsertEnter" },
 
-	-- LSP
-	"neovim/nvim-lspconfig", -- enable LSP
-	"williamboman/mason.nvim", -- simple to use language server installer
-	"williamboman/mason-lspconfig.nvim", -- simple to use language server installer
-
-	-- None ls helps with formatting and linting
+	-- LSP and Linting/Formatting
+	{ "neovim/nvim-lspconfig", event = { "BufReadPre", "BufNewFile" } },
+	{ "williamboman/mason.nvim", cmd = "Mason" },
+	{ "williamboman/mason-lspconfig.nvim", after = "mason.nvim" },
 	{
 		"nvimtools/none-ls.nvim",
+		dependencies = { "nvimtools/none-ls-extras.nvim" },
+		event = { "BufReadPre", "BufNewFile" },
+	},
+	{
+		"jay-babu/mason-null-ls.nvim",
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
-			"nvimtools/none-ls-extras.nvim",
+			"williamboman/mason.nvim",
+			"nvimtools/none-ls.nvim",
 		},
 	},
-
-	-- LSP progress status
 	{
 		"j-hui/fidget.nvim",
 		tag = "legacy",
+		event = "LspAttach",
 	},
-
-	-- Mason null-ls
-	"jay-babu/mason-null-ls.nvim",
-	event = { "BufReadPre", "BufNewFile" },
-	dependencies = {
-		"williamboman/mason.nvim",
-		"nvimtools/none-ls.nvim",
-	},
-
-	-- Git
-	"lewis6991/gitsigns.nvim",
-
-	-- Search and Replace
-	"windwp/nvim-spectre",
 
 	-- Testing
 	{
@@ -122,48 +134,40 @@ return lazy.setup({
 			"nvim-neotest/neotest-go",
 			"nsidorenco/neotest-vstest",
 		},
+		cmd = { "Neotest", "NeotestSummary", "NeotestOutput" },
 	},
 
-	-- Indent blankline
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		main = "ibl",
-		opts = {
-			indent = { char = "╎" },
-		},
-	},
-	-- AI plugin
+	-- AI/Copilot
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
 		dependencies = {
-			{ "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
-			{ "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+			{ "github/copilot.vim" },
+			{ "nvim-lua/plenary.nvim", branch = "master" },
 		},
-		build = "make tiktoken", -- Only on MacOS or Linux
-		opts = {
-			-- See Configuration section for options
-		},
-		-- See Commands section for default commands if you want to lazy load on them
+		build = "make tiktoken",
+		opts = {},
+		cmd = "CopilotChat",
 	},
-	-- dotnet.nvim
+
+	-- Language Specific Plugins
+	-- .NET
 	{
 		"GustavEikaas/easy-dotnet.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
 		config = function()
 			require("easy-dotnet").setup()
 		end,
+		ft = { "cs", "fs", "vb" },
 	},
+	-- Go
 	{
 		"ray-x/go.nvim",
-		dependencies = { -- optional packages
+		dependencies = {
 			"ray-x/guihua.lua",
 			"neovim/nvim-lspconfig",
 			"nvim-treesitter/nvim-treesitter",
 		},
-		opts = {
-			-- lsp_keymaps = false,
-			-- other options
-		},
+		opts = {},
 		config = function(lp, opts)
 			require("go").setup(opts)
 			local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
@@ -175,10 +179,11 @@ return lazy.setup({
 				group = format_sync_grp,
 			})
 		end,
-		event = { "CmdlineEnter" },
 		ft = { "go", "gomod" },
-		build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
+		build = ':lua require("go.install").update_all_sync()',
 	},
+
+	-- Diff Viewer
 	{
 		"esmuellert/vscode-diff.nvim",
 		dependencies = { "MunifTanjim/nui.nvim" },
