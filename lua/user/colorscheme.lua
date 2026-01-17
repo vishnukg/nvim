@@ -27,6 +27,7 @@ vim.cmd.colorscheme("vscode")
 
 vim.api.nvim_set_hl(0, "Visual", { bg = "#338fcc", fg = "None" })
 vim.api.nvim_set_hl(0, "CursorLine", { bg = "#464d53", fg = "None" })
+vim.api.nvim_set_hl(0, "NvimTreeCursorLine", { bg = "#464d53", fg = "None" })
 vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#4da9ff", fg = "None" })
 
 -- ===== Floating window styling =====
