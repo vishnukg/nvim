@@ -13,6 +13,7 @@ fidget.setup({
 			max_height = 10,
 			x_padding = 1,
 			y_padding = 1,
+			avoid = { "NvimTree" },
 		},
 		view = {
 			stack_upwards = false, -- Display from top to bottom
