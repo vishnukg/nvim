@@ -19,8 +19,8 @@ end
 return lazy.setup({
 
 	-- Core Lua functions and utilities
-	{ "nvim-lua/popup.nvim", lazy = true },
-	{ "nvim-lua/plenary.nvim", lazy = true },
+	{ "nvim-lua/popup.nvim", lazy = false },
+	{ "nvim-lua/plenary.nvim", lazy = false },
 
 	-- UI Enhancements
 	{
@@ -29,11 +29,10 @@ return lazy.setup({
 		lazy = false,
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
-			require("nvim-tree").setup({})
+			require("user.nvimtree")
 		end,
-		cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
 	},
-	{ "nvim-tree/nvim-web-devicons", lazy = true },
+	{ "nvim-tree/nvim-web-devicons", lazy = false },
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons", opt = true },
@@ -53,7 +52,7 @@ return lazy.setup({
 	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		cmd = "Telescope",
+		lazy = false,
 	},
 
 	-- Treesitter
@@ -69,8 +68,8 @@ return lazy.setup({
 	{ "mbbill/undotree", cmd = "UndotreeToggle" },
 
 	-- Git Integration
-	{ "tpope/vim-fugitive", cmd = { "Git", "G" } },
-	{ "lewis6991/gitsigns.nvim", event = { "BufReadPre", "BufNewFile" } },
+	{ "tpope/vim-fugitive", lazy = false },
+	{ "lewis6991/gitsigns.nvim", lazy = false },
 
 	-- Search and Replace
 	{ "windwp/nvim-spectre", cmd = "Spectre" },
@@ -105,17 +104,17 @@ return lazy.setup({
 	{ "rafamadriz/friendly-snippets", lazy = true },
 
 	-- LSP and Linting/Formatting
-	{ "neovim/nvim-lspconfig", event = { "BufReadPre", "BufNewFile" } },
-	{ "williamboman/mason.nvim", cmd = "Mason" },
-	{ "williamboman/mason-lspconfig.nvim", dependencies = "mason.nvim" },
+	{ "neovim/nvim-lspconfig", lazy = false },
+	{ "williamboman/mason.nvim", lazy = false },
+	{ "williamboman/mason-lspconfig.nvim", lazy = false, dependencies = "mason.nvim" },
 	{
 		"nvimtools/none-ls.nvim",
 		dependencies = { "nvimtools/none-ls-extras.nvim" },
-		event = { "BufReadPre", "BufNewFile" },
+		lazy = false,
 	},
 	{
 		"jay-babu/mason-null-ls.nvim",
-		event = { "BufReadPre", "BufNewFile" },
+		lazy = false,
 		dependencies = {
 			"williamboman/mason.nvim",
 			"nvimtools/none-ls.nvim",
@@ -123,7 +122,7 @@ return lazy.setup({
 	},
 	{
 		"j-hui/fidget.nvim",
-		event = "LspAttach",
+		lazy = false,
 		opts = {},
 	},
 
