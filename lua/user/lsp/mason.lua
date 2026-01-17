@@ -68,8 +68,10 @@ require("mason-lspconfig").setup({
 })
 
 -- =========================
--- LSP Servers Setup (new API)
+-- LSP Servers Setup
 -- =========================
+local lspconfig = require("lspconfig")
+
 for _, server in ipairs(lsp_servers) do
 	server = vim.split(server, "@")[1]
 
@@ -85,9 +87,6 @@ for _, server in ipairs(lsp_servers) do
 		opts = vim.tbl_deep_extend("force", opts, server_opts)
 	end
 
-	-- Register server config (instead of lspconfig[server].setup)
-	vim.lsp.config(server, opts)
-
-	-- Enable it (activates based on filetype)
-	vim.lsp.enable(server)
+	-- Setup server with lspconfig
+	lspconfig[server].setup(opts)
 end

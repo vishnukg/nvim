@@ -115,7 +115,7 @@ M.on_attach = function(client, bufnr)
 	-- its own formatting provider. The following statement disables
 	-- the builtin formatter from the lsp for that language. We instead
 	-- rely on the formatter provided by none-ls plugin
-	if client.name == "ts_ls" or client.name == "lua_ls" then
+	if client.name == "ts_ls" or client.name == "lua_ls" or client.name == "gopls" then
 		client.server_capabilities.documentFormattingProvider = false
 	end
 
