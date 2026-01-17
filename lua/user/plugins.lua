@@ -59,7 +59,13 @@ return lazy.setup({
 	{ "nvim-treesitter/nvim-treesitter", lazy = false, build = ":TSUpdate" },
 
 	-- Autopairs
-	{ "windwp/nvim-autopairs", event = "InsertEnter" },
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = function()
+			require("user.autopairs")
+		end,
+	},
 
 	-- Terminal Integration
 	{ "akinsho/toggleterm.nvim", cmd = "ToggleTerm" },

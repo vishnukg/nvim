@@ -82,18 +82,26 @@ keymap("n", "<leader>gt", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 -- Diff two files in the split buffers
 keymap("n", "<leader>df", ":windo diffthis<CR>", opts)
 
--- Neotest runner
+-- Neotest runner (lazy load neotest)
+local neotest_loaded = false
+local function get_neotest()
+	if not neotest_loaded then
+		neotest_loaded = true
+	end
+	return require("neotest")
+end
+
 keymap("n", "<leader>tr", function()
-	require("neotest").run.run()
+	get_neotest().run.run()
 end, opts)
 keymap("n", "<leader>tf", function()
-	require("neotest").run.run(vim.fn.expand("%"))
+	get_neotest().run.run(vim.fn.expand("%"))
 end, opts)
 keymap("n", "<leader>ts", function()
-	require("neotest").summary.toggle()
+	get_neotest().summary.toggle()
 end, opts)
 keymap("n", "<leader>to", function()
-	require("neotest").output.open({ enter = true })
+	get_neotest().output.open({ enter = true })
 end, opts)
 
 -- Rest.NVIM
@@ -124,3 +132,11 @@ end, { desc = "Restore Last Session" })
 keymap("n", "<leader>qd", function()
 	require("persistence").stop()
 end, { desc = "Don't Save Current Session" })
+
+-- Folding keymaps (mnemonic: <leader>f + action)
+keymap("n", "<leader>ft", "za", opts) -- Fold Toggle at cursor
+keymap("n", "<leader>fC", "zc", opts) -- Fold Close at cursor
+keymap("n", "<leader>fo", "zo", opts) -- Fold Open at cursor
+keymap("n", "<leader>fa", "zR", opts) -- Fold All open
+keymap("n", "<leader>fc", "zM", opts) -- Fold Close all
+keymap("n", "<leader>fT", "zA", opts) -- Fold Toggle all recursively at cursor
