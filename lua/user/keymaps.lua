@@ -136,7 +136,7 @@ end, { desc = "Don't Save Current Session" })
 -- Folding keymaps (mnemonic: <leader>f + action)
 keymap("n", "<leader>ft", "za", opts) -- Fold Toggle at cursor
 keymap("n", "<leader>fC", "zc", opts) -- Fold Close at cursor
-keymap("n", "<leader>fo", "zo", opts) -- Fold Open at cursor
-keymap("n", "<leader>fa", "zR", opts) -- Fold All open
+keymap("n", "<leader>foc", "zo", opts) -- Fold Open at cursor
+keymap("n", "<leader>fo", "zR", opts) -- Fold All open
 keymap("n", "<leader>fc", "zM", opts) -- Fold Close all
 keymap("n", "<leader>fT", "zA", opts) -- Fold Toggle all recursively at cursor
