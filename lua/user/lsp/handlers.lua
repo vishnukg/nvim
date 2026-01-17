@@ -119,10 +119,6 @@ M.on_attach = function(client, bufnr)
 		client.server_capabilities.documentFormattingProvider = false
 	end
 
-	if client.name == "csharp_ls" then
-		client.server_capabilities.inlayHintProvider = false
-	end
-
 	-- Enable inlay hints if the server supports it
 	if client.server_capabilities.inlayHintProvider then
 		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
