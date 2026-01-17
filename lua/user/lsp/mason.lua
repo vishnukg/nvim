@@ -8,6 +8,7 @@ local lint_and_format = {
 	"stylelint",
 	"yamllint",
 	"eslint_d",
+	"tflint",
 	-- Formatters
 	"black",
 	"csharpier",
