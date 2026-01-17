@@ -19,8 +19,8 @@ end
 return lazy.setup({
 
 	-- Core Lua functions and utilities
-	"nvim-lua/popup.nvim",
-	"nvim-lua/plenary.nvim",
+	{ "nvim-lua/popup.nvim", lazy = true },
+	{ "nvim-lua/plenary.nvim", lazy = true },
 
 	-- UI Enhancements
 	{
@@ -37,7 +37,7 @@ return lazy.setup({
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons", opt = true },
-		event = "VimEnter",
+		event = "UIEnter",
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
@@ -47,18 +47,17 @@ return lazy.setup({
 	},
 
 	-- Colorscheme
-	"Mofiqul/vscode.nvim",
+	{ "Mofiqul/vscode.nvim", lazy = false, priority = 1000 },
 
 	-- Fuzzy Finder
 	{
 		"nvim-telescope/telescope.nvim",
-		tag = "v0.2.0",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		cmd = "Telescope",
 	},
 
 	-- Treesitter
-	{ "nvim-treesitter/nvim-treesitter", lazy = false, branch = "master", build = ":TSUpdate" },
+	{ "nvim-treesitter/nvim-treesitter", lazy = false, build = ":TSUpdate" },
 
 	-- Autopairs
 	{ "windwp/nvim-autopairs", event = "InsertEnter" },
@@ -86,22 +85,29 @@ return lazy.setup({
 	},
 
 	-- Completion Plugins (nvim-cmp and sources)
-	{ "hrsh7th/nvim-cmp", event = "InsertEnter" },
-	{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
-	{ "hrsh7th/cmp-path", after = "nvim-cmp" },
-	{ "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
-	{ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
-	{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
-	{ "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" },
+	{ "hrsh7th/nvim-cmp", event = "InsertEnter", dependencies = {
+		"hrsh7th/cmp-buffer",
+		"hrsh7th/cmp-path",
+		"hrsh7th/cmp-cmdline",
+		"saadparwaiz1/cmp_luasnip",
+		"hrsh7th/cmp-nvim-lsp",
+		"hrsh7th/cmp-nvim-lua",
+	}},
+	{ "hrsh7th/cmp-buffer", lazy = true },
+	{ "hrsh7th/cmp-path", lazy = true },
+	{ "hrsh7th/cmp-cmdline", lazy = true },
+	{ "saadparwaiz1/cmp_luasnip", lazy = true },
+	{ "hrsh7th/cmp-nvim-lsp", lazy = true },
+	{ "hrsh7th/cmp-nvim-lua", lazy = true },
 
 	-- Snippets
-	{ "L3MON4D3/LuaSnip", event = "InsertEnter" },
-	{ "rafamadriz/friendly-snippets", event = "InsertEnter" },
+	{ "L3MON4D3/LuaSnip", event = "InsertEnter", dependencies = { "rafamadriz/friendly-snippets" } },
+	{ "rafamadriz/friendly-snippets", lazy = true },
 
 	-- LSP and Linting/Formatting
 	{ "neovim/nvim-lspconfig", event = { "BufReadPre", "BufNewFile" } },
 	{ "williamboman/mason.nvim", cmd = "Mason" },
-	{ "williamboman/mason-lspconfig.nvim", after = "mason.nvim" },
+	{ "williamboman/mason-lspconfig.nvim", dependencies = "mason.nvim" },
 	{
 		"nvimtools/none-ls.nvim",
 		dependencies = { "nvimtools/none-ls-extras.nvim" },
@@ -117,8 +123,8 @@ return lazy.setup({
 	},
 	{
 		"j-hui/fidget.nvim",
-		tag = "legacy",
 		event = "LspAttach",
+		opts = {},
 	},
 
 	-- Testing
@@ -131,10 +137,19 @@ return lazy.setup({
 			"antoinemadec/FixCursorHold.nvim",
 			"nvim-neotest/neotest-jest",
 			"marilari88/neotest-vitest",
-			"nvim-neotest/neotest-go",
+			"fredrikaverpil/neotest-golang",
 			"nsidorenco/neotest-vstest",
 		},
-		cmd = { "Neotest", "NeotestSummary", "NeotestOutput" },
+		config = function()
+			require("user.neotest")
+		end,
+		ft = { "go", "javascript", "typescript", "typescriptreact", "javascriptreact", "cs" },
+		keys = {
+			{ "<leader>tr", "<cmd>lua require('neotest').run.run()<CR>", desc = "Run nearest test" },
+			{ "<leader>tf", "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<CR>", desc = "Run file tests" },
+			{ "<leader>ts", "<cmd>lua require('neotest').summary.toggle()<CR>", desc = "Toggle test summary" },
+			{ "<leader>to", "<cmd>lua require('neotest').output.open({ enter = true })<CR>", desc = "Open test output" },
+		},
 	},
 
 	-- AI/Copilot
@@ -188,5 +203,30 @@ return lazy.setup({
 		"esmuellert/vscode-diff.nvim",
 		dependencies = { "MunifTanjim/nui.nvim" },
 		cmd = "CodeDiff",
+	},
+
+	-- Surround - manipulate surrounding characters
+	{
+		"kylechui/nvim-surround",
+		version = "*",
+		event = "VeryLazy",
+		config = function()
+			require("nvim-surround").setup({})
+		end,
+	},
+
+	-- Trouble - better diagnostics UI
+	{
+		"folke/trouble.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		cmd = { "Trouble", "TroubleToggle" },
+		opts = {},
+	},
+
+	-- Session Management
+	{
+		"folke/persistence.nvim",
+		event = "VimEnter",
+		opts = {},
 	},
 })

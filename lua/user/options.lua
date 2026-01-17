@@ -1,4 +1,9 @@
 -- :help options
+
+-- Set leader key FIRST before any keymaps
+vim.g.mapleader = "\\"
+vim.g.maplocalleader = "\\"
+
 local options = {
 	backup = false, -- creates a backup file
 	clipboard = "unnamedplus", -- allows neovim to access the system clipboard
@@ -10,7 +15,7 @@ local options = {
 	ignorecase = true, -- ignore case in search patterns
 	mouse = "a", -- allow the mouse to be used in neovim
 	pumheight = 10, -- pop up menu height
-	showmode = true, -- we don't need to see things like -- INSERT -- anymore
+	showmode = false, -- we don't need to see things like -- INSERT -- anymore (lualine shows it)
 	smartcase = true, -- smart case
 	smartindent = true, -- make indenting smarter again
 	splitbelow = true, -- force all horizontal splits to go below current window
@@ -46,15 +51,10 @@ for k, v in pairs(options) do
 	vim.opt[k] = v
 end
 
-vim.cmd("set whichwrap+=<,>,[,],h,l")
-vim.cmd([[ 
-    syntax enable
-    filetype plugin indent on
-
-    setlocal foldmethod=indent
-    set nofoldenable
-    set foldlevel=99
-]])
+vim.opt.whichwrap:append("<,>,[,],h,l")
+vim.opt.foldmethod = "indent"
+vim.opt.foldenable = false
+vim.opt.foldlevel = 99
 vim.opt.iskeyword:append("-") -- hyphenated words recognized by searches
 vim.opt.formatoptions:remove({ "c", "r", "o" }) -- don't insert the current comment leader automatically for auto-wrapping comments using 'textwidth', hitting <Enter> in insert mode, or hitting 'o' or 'O' in normal mode.
 vim.opt.runtimepath:remove("/usr/share/vim/vimfiles") -- separate vim plugins from neovim in case vim still in use

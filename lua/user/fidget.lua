@@ -3,4 +3,10 @@ if not status_ok then
 	return
 end
 
-fidget.setup({})
+fidget.setup({
+	notification = {
+		window = {
+			winblend = 0,
+		},
+	},
+})

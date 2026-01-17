@@ -25,14 +25,7 @@ local jest_configs = {
 }
 
 local adapters = {
-	require("neotest-go")({
-		experimental = { test_table = true },
-		args = { "-v" },
-		cwd = function()
-			return vim.fn.getcwd()
-		end,
-		test_pattern = { "*_test.go" },
-	}),
+	require("neotest-golang")({}),
 	require("neotest-vstest")({}),
 }
 

@@ -1,7 +1,7 @@
 local opts = { noremap = true, silent = true }
 
 -- Shorten function name
-local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 
 -- Modes
 --   normal_mode = "n",
@@ -23,7 +23,7 @@ keymap("n", "q", "<Nop>", opts)
 keymap("n", "<leader><leader>", ":wa<cr>", opts)
 keymap("", "<leader><leader>", ":wa<cr>", opts)
 
--- This unsets the last search pattern register by hitten return
+-- This unsets the last search pattern register by hitting return
 keymap("n", "<C-l>", ":noh<cr><C-l>", opts)
 
 -- Disable the use of arrow keys in normal mode
@@ -62,11 +62,17 @@ keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 keymap("n", "<C-g>", ":NvimTreeToggle<cr>", opts)
 
 --Spectre
-keymap("n", "<leader>sp", "<cmd>lua require('spectre').open()<CR>", opts)
+keymap("n", "<leader>sp", function()
+	require("spectre").open()
+end, opts)
 
 -- Spectre search current word
-keymap("n", "<leader>sw", "<cmd>lua require('spectre').open_visual({select_word=true})<CR>", opts)
-keymap("n", "<leader>s", "<esc>:lua require('spectre').open_visual()<CR>", opts)
+keymap("n", "<leader>sw", function()
+	require("spectre").open_visual({ select_word = true })
+end, opts)
+keymap("n", "<leader>s", function()
+	require("spectre").open_visual()
+end, opts)
 
 -- Toggle Term
 keymap("n", "<leader>tv", "<cmd>ToggleTerm size=90 direction=vertical<CR>", opts)
@@ -77,10 +83,18 @@ keymap("n", "<leader>gt", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 keymap("n", "<leader>df", ":windo diffthis<CR>", opts)
 
 -- Neotest runner
-keymap("n", "<leader>tr", "<cmd>lua require('neotest').run.run()<CR>", opts)
-keymap("n", "<leader>tf", "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<CR>", opts)
-keymap("n", "<leader>ts", "<cmd>lua require('neotest').summary.toggle()<CR>", opts)
-keymap("n", "<leader>to", "<cmd>lua require('neotest').output.open({ enter = true })<CR>", opts)
+keymap("n", "<leader>tr", function()
+	require("neotest").run.run()
+end, opts)
+keymap("n", "<leader>tf", function()
+	require("neotest").run.run(vim.fn.expand("%"))
+end, opts)
+keymap("n", "<leader>ts", function()
+	require("neotest").summary.toggle()
+end, opts)
+keymap("n", "<leader>to", function()
+	require("neotest").output.open({ enter = true })
+end, opts)
 
 -- Rest.NVIM
 keymap("n", "<leader>ht", "<cmd>Rest run<CR>", opts)
@@ -94,3 +108,19 @@ keymap("n", "<leader>cpr", "<cmd>CopilotChatReset<CR>", opts)
 
 --Vim Code Diff
 keymap("n", "<leader>cd", "<cmd>CodeDiff<CR>", opts)
+
+-- Trouble diagnostics
+keymap("n", "<leader>xx", "<cmd>TroubleToggle<CR>", opts)
+keymap("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<CR>", opts)
+keymap("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<CR>", opts)
+
+-- Session Management
+keymap("n", "<leader>qs", function()
+	require("persistence").load()
+end, { desc = "Restore Session" })
+keymap("n", "<leader>ql", function()
+	require("persistence").load({ last = true })
+end, { desc = "Restore Last Session" })
+keymap("n", "<leader>qd", function()
+	require("persistence").stop()
+end, { desc = "Don't Save Current Session" })

@@ -1,50 +1,17 @@
-local status_ok, configs = pcall(require, "nvim-treesitter.configs")
+-- Enable treesitter-based highlighting for all filetypes
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "*",
+	callback = function()
+		pcall(vim.treesitter.start)
+	end,
+})
 
-if not status_ok then
-	return
-end
-
-configs.setup({
-	ensure_installed = {
-		"bash",
-		"c",
-		"javascript",
-		"json",
-		"lua",
-		"python",
-		"typescript",
-		"tsx",
-		"css",
-		"rust",
-		"yaml",
-		"markdown",
-		"markdown_inline",
-		"vim",
-		"go",
-		"c_sharp",
-		"html",
-		"xml",
-		"toml",
-		"hcl",
-		"perl",
-		"http",
-		"diff",
-	}, -- one of "all" or a list of languages
-	sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
-	ignore_install = { "" }, -- List of parsers to ignore installing
-	modules = {}, -- Add this line to satisfy diagnostics
-	auto_install = true,
-	autopairs = {
-		enable = true,
-	},
-	highlight = {
-		enable = true, -- false will disable the whole extension
-		disable = { "" }, -- list of language that will be disabled
-		additional_vim_regex_highlighting = false,
-	},
-	indent = { enable = true, disable = { "yaml", "html" } },
-	context_commentstring = {
-		enable = true,
-		enable_autocmd = false,
-	},
+-- Enable treesitter-based indentation (experimental)
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "*",
+	callback = function()
+		if vim.bo.filetype ~= "yaml" and vim.bo.filetype ~= "html" then
+			vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+		end
+	end,
 })

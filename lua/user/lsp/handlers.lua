@@ -123,6 +123,11 @@ M.on_attach = function(client, bufnr)
 		client.server_capabilities.inlayHintProvider = false
 	end
 
+	-- Enable inlay hints if the server supports it
+	if client.server_capabilities.inlayHintProvider then
+		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+	end
+
 	lsp_keymaps(bufnr)
 	local status_ok, illuminate = pcall(require, "illuminate")
 	if not status_ok then

@@ -12,6 +12,15 @@ return {
 			staticcheck = true, -- enables extra checks from staticcheck
 			gofumpt = true, -- use stricter formatting
 			buildFlags = { "-tags=unitTests journeyTests" },
+			hints = {
+				assignVariableTypes = true,
+				compositeLiteralFields = true,
+				compositeLiteralTypes = true,
+				constantValues = true,
+				functionTypeParameters = true,
+				parameterNames = true,
+				rangeVariableTypes = true,
+			},
 		},
 	},
 }
