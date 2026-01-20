@@ -11,8 +11,8 @@ treesitter.setup({
 	install_dir = vim.fn.stdpath("data") .. "/site",
 })
 
--- Install parsers (this runs asynchronously)
-treesitter.install({
+-- List of parsers to install
+local parsers_to_install = {
 	"bash",
 	"c",
 	"c_sharp",
@@ -36,7 +36,32 @@ treesitter.install({
 	"vim",
 	"xml",
 	"yaml",
-})
+}
+
+-- Install parsers automatically (safe for new machines)
+local install_ok, install_fn = pcall(function()
+	return treesitter.install
+end)
+
+if install_ok and install_fn then
+	-- New API available (nvim-treesitter rewrite)
+	vim.schedule(function()
+		treesitter.install(parsers_to_install)
+	end)
+else
+	-- Fallback: Create command to install all parsers
+	vim.api.nvim_create_user_command("TSInstallAll", function()
+		vim.cmd("TSInstall " .. table.concat(parsers_to_install, " "))
+	end, {})
+	
+	-- Auto-run on first launch if parsers are missing
+	vim.schedule(function()
+		local parser_dir = vim.fn.stdpath("data") .. "/site/parser"
+		if vim.fn.isdirectory(parser_dir) == 0 or vim.fn.empty(vim.fn.glob(parser_dir .. "/*.so")) == 1 then
+			vim.cmd("TSInstallAll")
+		end
+	end)
+end
 
 -- Filetypes that correspond to our installed parsers
 local supported_filetypes = {
