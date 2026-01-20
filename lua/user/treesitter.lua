@@ -1,5 +1,6 @@
 -- Configure nvim-treesitter
 -- Following official docs: https://github.com/nvim-treesitter/nvim-treesitter
+-- Using the new rewrite from main branch (requires Neovim 0.11.0+)
 
 local status_ok, treesitter = pcall(require, "nvim-treesitter")
 if not status_ok then
@@ -38,30 +39,24 @@ local parsers_to_install = {
 	"yaml",
 }
 
--- Install parsers automatically (safe for new machines)
-local install_ok, install_fn = pcall(function()
-	return treesitter.install
-end)
-
-if install_ok and install_fn then
-	-- New API available (nvim-treesitter rewrite)
-	vim.schedule(function()
-		treesitter.install(parsers_to_install)
-	end)
-else
-	-- Fallback: Create command to install all parsers
-	vim.api.nvim_create_user_command("TSInstallAll", function()
-		vim.cmd("TSInstall " .. table.concat(parsers_to_install, " "))
-	end, {})
-	
-	-- Auto-run on first launch if parsers are missing
-	vim.schedule(function()
-		local parser_dir = vim.fn.stdpath("data") .. "/site/parser"
-		if vim.fn.isdirectory(parser_dir) == 0 or vim.fn.empty(vim.fn.glob(parser_dir .. "/*.so")) == 1 then
-			vim.cmd("TSInstallAll")
-		end
-	end)
+-- Check if parser is installed
+local function is_parser_installed(lang)
+	local parser_path = vim.fn.stdpath("data") .. "/site/parser/" .. lang .. ".so"
+	return vim.fn.filereadable(parser_path) == 1
 end
+
+-- Install missing parsers automatically
+vim.schedule(function()
+	local missing = {}
+	for _, lang in ipairs(parsers_to_install) do
+		if not is_parser_installed(lang) then
+			table.insert(missing, lang)
+		end
+	end
+	if #missing > 0 then
+		treesitter.install(missing)
+	end
+end)
 
 -- Filetypes that correspond to our installed parsers
 local supported_filetypes = {
