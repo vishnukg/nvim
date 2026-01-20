@@ -53,6 +53,7 @@ for _, lang in ipairs(parsers_to_install) do
 end
 
 -- Install only missing parsers
+-- Note: install() runs asynchronously by default (no blocking)
 if #missing_parsers > 0 and treesitter.install then
 	treesitter.install(missing_parsers)
 end
