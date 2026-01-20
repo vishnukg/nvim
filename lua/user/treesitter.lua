@@ -1,13 +1,8 @@
 -- Configure nvim-treesitter (rewrite version)
 -- Following official docs: https://github.com/nvim-treesitter/nvim-treesitter
 
-local status_ok, treesitter = pcall(require, "nvim-treesitter")
-if not status_ok then
-	return
-end
-
 -- Install parsers asynchronously (no-op if already installed)
-treesitter.install({
+require('nvim-treesitter').install({
 	"bash",
 	"c",
 	"c_sharp",
