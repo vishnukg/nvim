@@ -1,45 +1,49 @@
 -- Configure nvim-treesitter
 -- Following official docs: https://github.com/nvim-treesitter/nvim-treesitter
 
-local status_ok, configs = pcall(require, "nvim-treesitter.configs")
+local status_ok, treesitter = pcall(require, "nvim-treesitter")
 if not status_ok then
 	return
 end
 
-configs.setup({
-	ensure_installed = {
-		"bash",
-		"c",
-		"c_sharp",
-		"css",
-		"diff",
-		"go",
-		"hcl",
-		"html",
-		"http",
-		"javascript",
-		"json",
-		"lua",
-		"markdown",
-		"markdown_inline",
-		"perl",
-		"python",
-		"rust",
-		"toml",
-		"tsx",
-		"typescript",
-		"vim",
-		"xml",
-		"yaml",
-	},
-	auto_install = true,
-	highlight = {
-		enable = true,
-	},
-	indent = {
-		enable = true,
-		disable = { "yaml", "html" },
-	},
+-- Optional setup (not required for defaults)
+treesitter.setup({
+	install_dir = vim.fn.stdpath("data") .. "/site",
+})
+
+-- Install parsers (this runs asynchronously)
+treesitter.install({
+	"bash",
+	"c",
+	"c_sharp",
+	"css",
+	"diff",
+	"go",
+	"hcl",
+	"html",
+	"http",
+	"javascript",
+	"json",
+	"lua",
+	"markdown",
+	"markdown_inline",
+	"perl",
+	"python",
+	"rust",
+	"toml",
+	"tsx",
+	"typescript",
+	"vim",
+	"xml",
+	"yaml",
+})
+
+-- Enable treesitter highlighting for all filetypes
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "*",
+	callback = function()
+		vim.treesitter.start()
+	end,
 })
 
 -- Enable treesitter folding
@@ -51,5 +55,17 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
 		vim.wo[0][0].foldmethod = "expr"
 		vim.wo[0][0].foldlevel = 99
+	end,
+})
+
+-- Enable treesitter indentation for most filetypes (experimental)
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "*",
+	callback = function()
+		local disabled_indent = { "yaml", "html" }
+		local filetype = vim.bo.filetype
+		if not vim.tbl_contains(disabled_indent, filetype) then
+			vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+		end
 	end,
 })
