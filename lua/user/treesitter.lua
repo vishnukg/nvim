@@ -38,9 +38,38 @@ treesitter.install({
 	"yaml",
 })
 
--- Enable treesitter highlighting for all filetypes
+-- Filetypes that correspond to our installed parsers
+local supported_filetypes = {
+	"bash",
+	"sh",
+	"c",
+	"cs",
+	"css",
+	"diff",
+	"go",
+	"hcl",
+	"terraform",
+	"html",
+	"http",
+	"javascript",
+	"json",
+	"lua",
+	"markdown",
+	"perl",
+	"python",
+	"rust",
+	"toml",
+	"tsx",
+	"typescriptreact",
+	"typescript",
+	"vim",
+	"xml",
+	"yaml",
+}
+
+-- Enable treesitter highlighting for supported filetypes
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "*",
+	pattern = supported_filetypes,
 	callback = function()
 		vim.treesitter.start()
 	end,
@@ -50,7 +79,7 @@ vim.api.nvim_create_autocmd("FileType", {
 local augroup = vim.api.nvim_create_augroup("TreesitterConfig", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
 	group = augroup,
-	pattern = "*",
+	pattern = supported_filetypes,
 	callback = function()
 		vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
 		vim.wo[0][0].foldmethod = "expr"
@@ -60,7 +89,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Enable treesitter indentation for most filetypes (experimental)
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "*",
+	pattern = supported_filetypes,
 	callback = function()
 		local disabled_indent = { "yaml", "html" }
 		local filetype = vim.bo.filetype
