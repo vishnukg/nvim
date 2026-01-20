@@ -1,33 +1,6 @@
 -- Configure nvim-treesitter (rewrite version)
 -- Following official docs: https://github.com/nvim-treesitter/nvim-treesitter
 
--- Install parsers asynchronously (no-op if already installed)
-require('nvim-treesitter').install {
-	"bash",
-	"c",
-	"c_sharp",
-	"css",
-	"diff",
-	"go",
-	"hcl",
-	"html",
-	"http",
-	"javascript",
-	"json",
-	"lua",
-	"markdown",
-	"markdown_inline",
-	"perl",
-	"python",
-	"rust",
-	"toml",
-	"tsx",
-	"typescript",
-	"vim",
-	"xml",
-	"yaml",
-}
-
 -- Filetypes to enable treesitter for
 local enabled_filetypes = {
 	"bash",
