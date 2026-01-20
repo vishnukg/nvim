@@ -12,8 +12,9 @@ treesitter.setup({
 	install_dir = vim.fn.stdpath("data") .. "/site",
 })
 
--- List of parsers to install
-local parsers_to_install = {
+-- Install parsers (this is a no-op if already installed)
+-- According to docs, install() checks and only installs missing parsers
+treesitter.install({
 	"bash",
 	"c",
 	"c_sharp",
@@ -28,7 +29,6 @@ local parsers_to_install = {
 	"lua",
 	"markdown",
 	"markdown_inline",
-	"perl",
 	"python",
 	"rust",
 	"toml",
@@ -37,26 +37,7 @@ local parsers_to_install = {
 	"vim",
 	"xml",
 	"yaml",
-}
-
--- Check if parser is installed
-local function is_parser_installed(lang)
-	local parser_path = vim.fn.stdpath("data") .. "/site/parser/" .. lang .. ".so"
-	return vim.fn.filereadable(parser_path) == 1
-end
-
--- Install missing parsers automatically
-vim.schedule(function()
-	local missing = {}
-	for _, lang in ipairs(parsers_to_install) do
-		if not is_parser_installed(lang) then
-			table.insert(missing, lang)
-		end
-	end
-	if #missing > 0 then
-		treesitter.install(missing)
-	end
-end)
+})
 
 -- Filetypes that correspond to our installed parsers
 local supported_filetypes = {
@@ -75,7 +56,6 @@ local supported_filetypes = {
 	"json",
 	"lua",
 	"markdown",
-	"perl",
 	"python",
 	"rust",
 	"toml",
