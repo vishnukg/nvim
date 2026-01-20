@@ -2,7 +2,7 @@
 -- Following official docs: https://github.com/nvim-treesitter/nvim-treesitter
 
 -- Install parsers asynchronously (no-op if already installed)
-require('nvim-treesitter').install({
+require('nvim-treesitter').install {
 	"bash",
 	"c",
 	"c_sharp",
@@ -26,7 +26,7 @@ require('nvim-treesitter').install({
 	"vim",
 	"xml",
 	"yaml",
-})
+}
 
 -- Filetypes to enable treesitter for
 local enabled_filetypes = {
