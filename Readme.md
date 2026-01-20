@@ -1,14 +1,47 @@
 Clone this repository under ~/.config (the result will look like ~/.config/nvim)
-If you want nvim to support a new language please do the following.
 
-Post Install config steps:
+## Prerequisites
+
+**IMPORTANT: Before first launch on a new machine:**
+
+1. **Install tree-sitter CLI** (required for nvim-treesitter plugin, version 0.26.1+):
+   ```bash
+   # Option 1: Using Cargo (Recommended)
+   cargo install tree-sitter-cli
+   
+   # Option 2: Using npm
+   npm install -g tree-sitter-cli
+   
+   # Option 3: Using Homebrew (macOS)
+   brew install tree-sitter
+   ```
+   
+   Verify installation:
+   ```bash
+   tree-sitter --version  # Should show 0.26.1 or later
+   ```
+
+2. **Clean old treesitter installation** (if migrating from old nvim-treesitter version):
+   ```bash
+   rm -rf ~/.local/share/nvim/lazy/nvim-treesitter
+   rm -rf ~/.local/share/nvim/site/parser/*
+   ```
+
+3. **Install other required tools:**
+   - FZF, Ripgrep for telescope to work correctly and to ignore gitignored paths
+   - A C compiler (gcc, clang, or MSVC)
+   - `tar` and `curl` in your PATH
+
+## Post Install Config Steps
+
+If you want nvim to support a new language please do the following:
 
 0. Install FZF, Ripgrep for telescope to work correctly and to ignore gitignored paths.
 1. Install a LSP for the language using Mason. Update the mason.lua file to add the server. Mason-lspconfig plugin is
    used to setup the lsp servers.
 2. If you need additional settings for your lsp config, looks into this place https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
    and add that to config section under LSP/ folder
-3. Install treesitter for your specific language to get good syntax highlighting
+3. Treesitter parsers are automatically installed on first launch. To add a new language parser, update the `parsers_to_install` list in `lua/user/treesitter.lua`
 4. Manually install a formatter and a diagnostics tool(linter) for that language and update null-ls.lua with
    that information. You can find the information on available formatter and diagnostics from here -> https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 5. We need to install rg and gnu-sed for nvim spectre to work.
