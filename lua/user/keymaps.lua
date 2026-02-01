@@ -122,17 +122,6 @@ keymap("n", "<leader>xx", "<cmd>TroubleToggle<CR>", opts)
 keymap("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<CR>", opts)
 keymap("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<CR>", opts)
 
--- Session Management
-keymap("n", "<leader>qs", function()
-	require("persistence").load()
-end, { desc = "Restore Session" })
-keymap("n", "<leader>ql", function()
-	require("persistence").load({ last = true })
-end, { desc = "Restore Last Session" })
-keymap("n", "<leader>qd", function()
-	require("persistence").stop()
-end, { desc = "Don't Save Current Session" })
-
 -- Folding keymaps (mnemonic: <leader>f + action)
 keymap("n", "<leader>ft", "za", opts) -- Fold Toggle at cursor
 keymap("n", "<leader>fC", "zc", opts) -- Fold Close at cursor

@@ -206,10 +206,4 @@ return lazy.setup({
 		opts = {},
 	},
 
-	-- Session Management
-	{
-		"folke/persistence.nvim",
-		event = "VimEnter",
-		opts = {},
-	},
 })
