@@ -149,12 +149,6 @@ return lazy.setup({
 			require("user.neotest")
 		end,
 		ft = { "go", "javascript", "typescript", "typescriptreact", "javascriptreact", "cs" },
-		keys = {
-			{ "<leader>tr", "<cmd>lua require('neotest').run.run()<CR>", desc = "Run nearest test" },
-			{ "<leader>tf", "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<CR>", desc = "Run file tests" },
-			{ "<leader>ts", "<cmd>lua require('neotest').summary.toggle()<CR>", desc = "Toggle test summary" },
-			{ "<leader>to", "<cmd>lua require('neotest').output.open({ enter = true })<CR>", desc = "Open test output" },
-		},
 	},
 
 	-- AI/Copilot
