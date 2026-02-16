@@ -90,14 +90,18 @@ return lazy.setup({
 	},
 
 	-- Completion Plugins (nvim-cmp and sources)
-	{ "hrsh7th/nvim-cmp", event = "InsertEnter", dependencies = {
-		"hrsh7th/cmp-buffer",
-		"hrsh7th/cmp-path",
-		"hrsh7th/cmp-cmdline",
-		"saadparwaiz1/cmp_luasnip",
-		"hrsh7th/cmp-nvim-lsp",
-		"hrsh7th/cmp-nvim-lua",
-	}},
+	{
+		"hrsh7th/nvim-cmp",
+		event = "InsertEnter",
+		dependencies = {
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
+			"saadparwaiz1/cmp_luasnip",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-nvim-lua",
+		},
+	},
 	{ "hrsh7th/cmp-buffer", lazy = true },
 	{ "hrsh7th/cmp-path", lazy = true },
 	{ "hrsh7th/cmp-cmdline", lazy = true },
@@ -174,14 +178,6 @@ return lazy.setup({
 		ft = { "cs", "fs", "vb" },
 	},
 
-
-	-- Diff Viewer
-	{
-		"esmuellert/vscode-diff.nvim",
-		dependencies = { "MunifTanjim/nui.nvim" },
-		cmd = "CodeDiff",
-	},
-
 	-- Surround - manipulate surrounding characters
 	{
 		"kylechui/nvim-surround",
@@ -199,5 +195,4 @@ return lazy.setup({
 		cmd = { "Trouble", "TroubleToggle" },
 		opts = {},
 	},
-
 })
