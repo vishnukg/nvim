@@ -44,6 +44,6 @@
   "trouble.nvim": { "branch": "main", "commit": "bd67efe408d4816e25e8491cc5ad4088e708a69a" },
   "undotree": { "branch": "master", "commit": "d8f99084d98c32f651860eb0baaf89759f91debc" },
   "vim-fugitive": { "branch": "master", "commit": "61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4" },
-  "vscode-diff.nvim": { "branch": "main", "commit": "a1766b6d69b9e083178296e4a01f51438e2170b4" },
+  "vscode-diff.nvim": { "branch": "main", "commit": "6cfc1e013677c595dc24a4f5a6cbdd3ced482944" },
   "vscode.nvim": { "branch": "main", "commit": "aa1102a7e15195c9cca22730b09224a7f7745ba8" }
 }
