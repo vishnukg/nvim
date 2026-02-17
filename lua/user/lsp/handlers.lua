@@ -42,6 +42,40 @@ M.setup = function()
 
 	vim.diagnostic.config(config)
 
+	-- ============================================================================
+	-- WORKAROUND: Fix gopls package rename in Neovim 0.11.6
+	-- Issue: https://github.com/neovim/neovim/issues/37724
+	-- Fixed in: PR #37725 (merged to master, will be in v0.12 or v0.11.7+)
+	-- TODO: Remove this entire block when upgrading to Neovim 0.11.7+ or 0.12+
+	-- ============================================================================
+	local original_fs_rm = vim.fs.rm
+	---@diagnostic disable-next-line: duplicate-set-field
+	vim.fs.rm = function(path, opts)
+		opts = opts or {}
+		local stat = vim.uv.fs_lstat(path)
+
+		if stat and stat.type == "directory" then
+			-- Recursively delete directory contents
+			for name, _ in vim.fs.dir(path) do
+				vim.fs.rm(vim.fs.joinpath(path, name), { recursive = true, force = opts.force })
+			end
+			-- Remove the now-empty directory
+			local ok, err = vim.uv.fs_rmdir(path)
+			if not ok and not opts.force then
+				error(err)
+			end
+		elseif stat then
+			-- For files, use original function
+			original_fs_rm(path, opts)
+		elseif not opts.force then
+			-- Path doesn't exist and force not set - let original handle the error
+			original_fs_rm(path, opts)
+		end
+	end
+	-- ============================================================================
+	-- END WORKAROUND
+	-- ============================================================================
+
 	vim.lsp.handlers["textDocument/hover"] = function(_, result)
 		-- Check if result exists and contains the necessary hover information
 		if not result or not result.contents then
