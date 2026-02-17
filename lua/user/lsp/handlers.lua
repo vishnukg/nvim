@@ -52,11 +52,14 @@ M.setup = function()
 	---@diagnostic disable-next-line: duplicate-set-field
 	vim.fs.rm = function(path, opts)
 		opts = opts or {}
+		-- Use lstat (not stat) to properly detect symlinks and directories
+		-- This is the same fix as the official PR #37725
 		local stat = vim.uv.fs_lstat(path)
 
 		if stat and stat.type == "directory" then
-			-- Recursively delete directory contents
+			-- Recursively delete directory contents (safe for all LSPs)
 			for name, _ in vim.fs.dir(path) do
+				---@diagnostic disable-next-line: param-type-mismatch
 				vim.fs.rm(vim.fs.joinpath(path, name), { recursive = true, force = opts.force })
 			end
 			-- Remove the now-empty directory
@@ -65,10 +68,10 @@ M.setup = function()
 				error(err)
 			end
 		elseif stat then
-			-- For files, use original function
+			-- For files, use original function (unchanged behavior)
 			original_fs_rm(path, opts)
 		elseif not opts.force then
-			-- Path doesn't exist and force not set - let original handle the error
+			-- Path doesn't exist - let original handle the error
 			original_fs_rm(path, opts)
 		end
 	end
