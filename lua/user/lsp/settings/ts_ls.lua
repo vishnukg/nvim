@@ -2,10 +2,10 @@ return {
 	settings = {
 		typescript = {
 			inlayHints = {
-				includeInlayParameterNameHints = "literals",
+				includeInlayParameterNameHints = "all",
 				includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-				includeInlayFunctionParameterTypeHints = false,
-				includeInlayVariableTypeHints = false,
+				includeInlayFunctionParameterTypeHints = true,
+				includeInlayVariableTypeHints = true,
 				includeInlayPropertyDeclarationTypeHints = false,
 				includeInlayFunctionLikeReturnTypeHints = true,
 				includeInlayEnumMemberValueHints = false,
@@ -13,10 +13,10 @@ return {
 		},
 		javascript = {
 			inlayHints = {
-				includeInlayParameterNameHints = "literals",
+				includeInlayParameterNameHints = "all",
 				includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-				includeInlayFunctionParameterTypeHints = false,
-				includeInlayVariableTypeHints = false,
+				includeInlayFunctionParameterTypeHints = true,
+				includeInlayVariableTypeHints = true,
 				includeInlayPropertyDeclarationTypeHints = false,
 				includeInlayFunctionLikeReturnTypeHints = true,
 				includeInlayEnumMemberValueHints = false,
