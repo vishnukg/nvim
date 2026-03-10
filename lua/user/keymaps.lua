@@ -104,23 +104,19 @@ keymap("n", "<leader>to", function()
 	get_neotest().output.open({ enter = true })
 end, opts)
 
--- Rest.NVIM
-keymap("n", "<leader>ht", "<cmd>Rest run<CR>", opts)
-keymap("n", "<leader>hto", "<cmd>Rest open<CR>", opts)
-
 --Copilot chat and copilot
 keymap("n", "<leader>cp", "<cmd>CopilotChat<CR>", opts)
 keymap("n", "<leader>cpe", "<cmd>CopilotChatExplain<CR>", opts)
 keymap("n", "<leader>cpt", "<cmd>CopilotChatTests<CR>", opts)
 keymap("n", "<leader>cpr", "<cmd>CopilotChatReset<CR>", opts)
 
---Vim Code Diff
-keymap("n", "<leader>cd", "<cmd>CodeDiff<CR>", opts)
-
 -- Trouble diagnostics
 keymap("n", "<leader>xx", "<cmd>TroubleToggle<CR>", opts)
 keymap("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<CR>", opts)
 keymap("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<CR>", opts)
+
+-- Tabs
+keymap("n", "<leader>nt", "<cmd>tabnew<CR>", opts) -- New Tab (empty buffer)
 
 -- Folding keymaps (mnemonic: <leader>f + action)
 keymap("n", "<leader>ft", "za", opts) -- Fold Toggle at cursor
