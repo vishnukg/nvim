@@ -3,7 +3,7 @@
     "prefix": "ifen",
     "body": [
       "if err != nil {",
-      "\t${0:return err}",
+      "\t${0:return nil, err}",
       "}"
     ],
     "description": "if err != nil error check"
