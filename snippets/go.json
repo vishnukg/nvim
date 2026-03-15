@@ -1,0 +1,11 @@
+{
+  "if err != nil": {
+    "prefix": "ifen",
+    "body": [
+      "if err != nil {",
+      "\t${0:return err}",
+      "}"
+    ],
+    "description": "if err != nil error check"
+  }
+}

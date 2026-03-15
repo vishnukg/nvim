@@ -32,6 +32,7 @@ local lsp_servers = {
 	"taplo",
 	"terraformls",
 	"csharp_ls",
+	"postgres_lsp",
 }
 
 -- =========================
