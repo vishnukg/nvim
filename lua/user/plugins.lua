@@ -174,7 +174,6 @@ return lazy.setup({
 		opts = {
 			install_treesitter_grammar = true,
 		},
-		ft = { "fga" },
 	},
 
 	-- Bruno API client (.bru syntax highlighting via tree-sitter)
