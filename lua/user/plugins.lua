@@ -168,6 +168,18 @@ return lazy.setup({
 	},
 
 	-- Language Specific Plugins
+	-- OpenFGA authorization models
+	{
+		"hedengran/fga.nvim",
+		opts = {
+			install_treesitter_grammar = true,
+		},
+		ft = { "fga" },
+	},
+
+	-- Bruno API client (.bru syntax highlighting via tree-sitter)
+	{ "kristoferssolo/tree-sitter-bruno" },
+
 	-- .NET
 	{
 		"GustavEikaas/easy-dotnet.nvim",
