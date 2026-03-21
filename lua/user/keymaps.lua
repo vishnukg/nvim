@@ -118,6 +118,9 @@ keymap("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<CR>", opts)
 -- Tabs
 keymap("n", "<leader>nt", "<cmd>tabnew<CR>", opts) -- New Tab (empty buffer)
 
+-- Markdown (render-markdown.nvim)
+keymap("n", "<leader>vm", "<cmd>RenderMarkdown toggle<CR>", opts) -- Toggle Markdown rendering
+
 -- Folding keymaps (mnemonic: <leader>f + action)
 keymap("n", "<leader>ft", "za", opts) -- Fold Toggle at cursor
 keymap("n", "<leader>fC", "zc", opts) -- Fold Close at cursor
