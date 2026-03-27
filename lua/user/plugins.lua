@@ -148,7 +148,6 @@ return lazy.setup({
 			"marilari88/neotest-vitest",
 			"fredrikaverpil/neotest-golang",
 			"nsidorenco/neotest-vstest",
-			"olimorris/neotest-rspec",
 			"zidhuss/neotest-minitest",
 		},
 		config = function()
