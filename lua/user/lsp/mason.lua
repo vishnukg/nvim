@@ -14,6 +14,7 @@ local lint_and_format = {
 	"prettierd",
 	"stylua",
 	"yamlfmt",
+	"standardrb",
 }
 
 -- =========================
