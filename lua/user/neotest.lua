@@ -30,6 +30,11 @@ local rspec_configs = {
 	"spec/rails_helper.rb",
 }
 
+local minitest_configs = {
+	"test/test_helper.rb",
+	"test/minitest_helper.rb",
+}
+
 local adapters = {
 	require("neotest-golang")({}),
 	require("neotest-vstest")({}),
@@ -44,6 +49,22 @@ if has_file(rspec_configs) then
 					"bundle",
 					"exec",
 					"rspec",
+				})
+			end,
+		})
+	)
+end
+
+if has_file(minitest_configs) then
+	table.insert(
+		adapters,
+		require("neotest-minitest")({
+			test_cmd = function()
+				return vim.tbl_flatten({
+					"bundle",
+					"exec",
+					"ruby",
+					"-Itest",
 				})
 			end,
 		})
