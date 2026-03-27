@@ -33,6 +33,7 @@ local lsp_servers = {
 	"terraformls",
 	"csharp_ls",
 	"postgres_lsp",
+	"ruby_lsp",
 }
 
 -- =========================
