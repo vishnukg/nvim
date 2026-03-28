@@ -18,7 +18,7 @@ fi
 echo "Installing dependencies via Homebrew..."
 brew install \
   neovim \
-  tree-sitter \
+  tree-sitter-cli \
   ripgrep \
   fd \
   fzf \
@@ -30,14 +30,14 @@ if ! xcode-select -p &>/dev/null; then
   xcode-select --install
 fi
 
-# --- Nerd Font ---
-echo "Installing Hack Nerd Font..."
-brew install --cask font-hack-nerd-font
+# --- Font ---
+echo "Installing Fira Code..."
+brew install --cask font-fira-code
 
 echo ""
 echo "✅ All dependencies installed."
 echo ""
 echo "Next steps:"
-echo "  1. Set your terminal font to 'Hack Nerd Font'"
+echo "  1. Set your terminal font to 'Fira Code'"
 echo "  2. Launch nvim — plugins, LSP servers, and Treesitter parsers install automatically"
 echo "  3. For Ruby support: gem install standard (or add 'gem \"standard\"' to your project Gemfile)"
