@@ -15,7 +15,6 @@ local lint_and_format = {
 	"stylua",
 	"yamlfmt",
 	"hadolint",
-	"tflint",
 }
 
 -- =========================

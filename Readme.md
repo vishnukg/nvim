@@ -236,7 +236,7 @@ nvim-cmp sources (in priority order):
 | **YAML** | yamlls | yamlfmt | yamllint | — |
 | **Bash** | bashls | — | — | — |
 | **TOML** | taplo | — | — | — |
-| **Terraform / HCL** | terraformls | terraform_fmt | tflint | — |
+| **Terraform / HCL** | terraformls | terraform_fmt | terraformls | — |
 | **C#** | csharp_ls | csharpier | — | neotest-vstest |
 | **SQL / PostgreSQL** | postgres_lsp | — | — | — |
 | **Dockerfile** | dockerls | — | hadolint | — |

@@ -36,7 +36,6 @@ null_ls.setup({
 		formatting.yamlfmt,
 		diagnostics.golangci_lint,
 		diagnostics.yamllint,
-		diagnostics.tflint,
 		diagnostics.hadolint,
 		require("none-ls.diagnostics.eslint").with({
 			condition = function(utils)
