@@ -24,17 +24,25 @@ local jest_configs = {
 	"jest.config.json",
 }
 
-local minitest_configs = {
-	"test/test_helper.rb",
-	"test/minitest_helper.rb",
-}
+local function is_minitest_project()
+	local gemfile = vim.fn.getcwd() .. "/Gemfile"
+	if vim.fn.filereadable(gemfile) == 0 then
+		return false
+	end
+	for line in io.lines(gemfile) do
+		if line:match("minitest") then
+			return true
+		end
+	end
+	return false
+end
 
 local adapters = {
 	require("neotest-golang")({}),
 	require("neotest-vstest")({}),
 }
 
-if has_file(minitest_configs) then
+if is_minitest_project() then
 	table.insert(
 		adapters,
 		require("neotest-minitest")({
