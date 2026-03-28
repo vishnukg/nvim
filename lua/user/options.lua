@@ -1,9 +1,5 @@
 -- :help options
 
--- Set leader key FIRST before any keymaps
-vim.g.mapleader = "\\"
-vim.g.maplocalleader = "\\"
-
 local options = {
 	backup = false, -- creates a backup file
 	clipboard = "unnamedplus", -- allows neovim to access the system clipboard
@@ -59,3 +55,4 @@ vim.opt.iskeyword:append("-") -- hyphenated words recognized by searches
 vim.opt.formatoptions:remove({ "c", "r", "o" }) -- don't insert the current comment leader automatically for auto-wrapping comments using 'textwidth', hitting <Enter> in insert mode, or hitting 'o' or 'O' in normal mode.
 vim.opt.runtimepath:remove("/usr/share/vim/vimfiles") -- separate vim plugins from neovim in case vim still in use
 vim.opt.fillchars:append({ eob = " " }) -- Remove tilde characters
+vim.o.winborder = "rounded" -- Rounded borders on all floating windows (hover, signature help, diagnostics)

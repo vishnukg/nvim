@@ -111,9 +111,9 @@ keymap("n", "<leader>cpt", "<cmd>CopilotChatTests<CR>", opts)
 keymap("n", "<leader>cpr", "<cmd>CopilotChatReset<CR>", opts)
 
 -- Trouble diagnostics
-keymap("n", "<leader>xx", "<cmd>TroubleToggle<CR>", opts)
-keymap("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<CR>", opts)
-keymap("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<CR>", opts)
+keymap("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<CR>", opts)
+keymap("n", "<leader>xw", "<cmd>Trouble diagnostics toggle<CR>", opts)
+keymap("n", "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", opts)
 
 -- Tabs
 keymap("n", "<leader>nt", "<cmd>tabnew<CR>", opts) -- New Tab (empty buffer)

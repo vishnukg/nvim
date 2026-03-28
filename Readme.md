@@ -7,6 +7,7 @@ A personal Neovim configuration built on [lazy.nvim](https://github.com/folke/la
 ## Table of Contents
 
 - [Fresh Install](#fresh-install)
+- [Config Structure](#config-structure)
 - [How Everything Works Together](#how-everything-works-together)
   - [Treesitter](#treesitter--syntax-highlighting)
   - [Mason](#mason--package-manager)
@@ -20,7 +21,52 @@ A personal Neovim configuration built on [lazy.nvim](https://github.com/folke/la
 
 ---
 
-## Fresh Install
+## Config Structure
+
+```
+~/.config/nvim/
+├── init.lua                  # Entry point — loads bootstrap then user config
+├── bootstrap.lua             # Pre-plugin globals (leader keys, providers, netrw)
+│                             # ⚠️  Must load before lazy.nvim initialises
+├── install-deps.sh           # macOS Homebrew setup script
+└── lua/
+    └── user/
+        ├── init.lua          # Loads all modules in order
+        ├── options.lua       # Neovim options (tabstop, scrolloff, etc.)
+        ├── keymaps.lua       # Global keymaps
+        ├── plugins.lua       # lazy.nvim plugin specs
+        ├── colorscheme.lua   # Theme setup
+        ├── cmp.lua           # Completion (nvim-cmp + LuaSnip)
+        ├── treesitter.lua    # Syntax parser config + installed parsers
+        ├── nvimtree.lua      # File explorer
+        ├── lualine.lua       # Status line
+        ├── telescope.lua     # Fuzzy finder
+        ├── gitsigns.lua      # Git decorations
+        ├── fidget.lua        # LSP progress notifications
+        ├── toggleterm.lua    # Integrated terminal
+        ├── copilot.lua       # GitHub Copilot config
+        ├── refactor.lua      # Refactor.nvim config
+        └── lsp/
+            ├── init.lua      # Wires up Mason, handlers, null-ls
+            ├── mason.lua     # LSP servers + formatter/linter tool lists
+            ├── handlers.lua  # on_attach, keymaps, diagnostics, inlay hints
+            ├── null-ls.lua   # none-ls sources (formatters & linters)
+            └── settings/     # Per-server config overrides
+                ├── lua_ls.lua
+                ├── ruby_lsp.lua
+                ├── terraformls.lua
+                └── ...
+```
+
+**Load order in `init.lua`:**
+```
+require "bootstrap"   -- 1. globals that must exist before any plugin loads
+require "user"        -- 2. lazy.nvim + all plugins + LSP + keymaps
+```
+
+---
+
+
 
 ### 1. Clone the config
 
@@ -35,9 +81,12 @@ git clone <repo-url> ~/.config/nvim
 | [Neovim](https://neovim.io/) v0.11+ | The editor | `brew install neovim` |
 | [tree-sitter CLI](https://github.com/tree-sitter/tree-sitter) v0.26.1+ | Compiles syntax parsers | `brew install tree-sitter` |
 | [ripgrep](https://github.com/BurntSushi/ripgrep) | Telescope live grep | `brew install ripgrep` |
+| [fd](https://github.com/sharkdp/fd) | Fast file search for Telescope | `brew install fd` |
 | [fzf](https://github.com/junegunn/fzf) | Fuzzy finding | `brew install fzf` |
 | C compiler (gcc/clang) | Builds Treesitter parsers | Xcode CLT on macOS |
 | [Hack Nerd Font](https://www.nerdfonts.com/) | Icons & special characters | Install via font manager |
+
+> Run `./install-deps.sh` from the repo root to install all Homebrew dependencies at once.
 
 > **Linux only:** install `xclip` for clipboard support.
 
@@ -65,9 +114,11 @@ Some languages require tools **outside of Mason** — see the [Language Support]
 Four separate systems collaborate to give you IDE features. Each one has a distinct job:
 
 ```
-┌─────────────────────────────────────────────────────────────────────┐
-│                          Your Code                                  │
-└───────┬───────────────┬──────────────────┬──────────────────────────┘
+┌──────────────────────────────────────────────────────────────────────┐
+│                        init.lua                                      │
+│  require "bootstrap"  →  providers, leader keys, netrw (pre-plugin) │
+│  require "user"       →  everything below                            │
+└───────┬───────────────┬──────────────────┬───────────────────────────┘
         │               │                  │
         ▼               ▼                  ▼
 ┌───────────────┐ ┌──────────────┐ ┌──────────────────┐
@@ -229,10 +280,10 @@ nvim-cmp sources (in priority order):
 | **Lua** | lua_ls | stylua | — | — |
 | **Python** | pyright | black | pylint | — |
 | **Go** | gopls | goimports | golangci_lint | neotest-golang |
-| **TypeScript / JavaScript** | ts_ls | prettier | eslint_d¹ | neotest-jest / neotest-vitest² |
-| **JSON** | jsonls | prettier | — | — |
-| **HTML** | html + emmet_ls | prettier | — | — |
-| **CSS / SCSS** | — | prettier | stylelint | — |
+| **TypeScript / JavaScript** | ts_ls | prettierd | eslint_d¹ | neotest-jest / neotest-vitest² |
+| **JSON** | jsonls | prettierd | — | — |
+| **HTML** | html + emmet_ls | prettierd | — | — |
+| **CSS / SCSS** | — | prettierd | stylelint | — |
 | **YAML** | yamlls | yamlfmt | yamllint | — |
 | **Bash** | bashls | — | — | — |
 | **TOML** | taplo | — | — | — |

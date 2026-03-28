@@ -33,7 +33,6 @@ M.setup = function()
 		float = {
 			focusable = true,
 			style = "minimal",
-			border = "rounded",
 			source = "always",
 			header = "",
 			prefix = "",
@@ -79,72 +78,25 @@ M.setup = function()
 	-- END WORKAROUND
 	-- ============================================================================
 
-	vim.lsp.handlers["textDocument/hover"] = function(_, result)
-		-- Check if result exists and contains the necessary hover information
-		if not result or not result.contents then
-			return
-		end
-
-		-- Prepare content for hover preview
-		local lines = {}
-		if type(result.contents) == "table" then
-			for _, item in ipairs(result.contents) do
-				table.insert(lines, item.value or item)
-			end
-		else
-			table.insert(lines, result.contents)
-		end
-
-		-- Set up the options for the floating window with rounded borders
-		local opts = vim.tbl_deep_extend("force", config or {}, {
-			border = "rounded", -- Add a rounded border
-			focusable = true,
-		})
-
-		-- Open a floating window to display hover information
-		vim.lsp.util.open_floating_preview(lines, "markdown", opts)
-	end
-	vim.lsp.handlers["textDocument/signatureHelp"] = function(_, result)
-		-- Ensure that result is not nil and handle the signature help properly
-		if not result or not result.signatures then
-			return
-		end
-
-		-- Create the signature help content
-		local lines = {}
-		for _, signature in ipairs(result.signatures) do
-			table.insert(lines, signature.label)
-		end
-
-		-- Create a floating window with a rounded border
-		local opts = vim.tbl_deep_extend("force", config or {}, {
-			border = "rounded", -- Add rounded border
-			focusable = true,
-		})
-
-		-- Show the signature help in a floating window
-		vim.lsp.util.open_floating_preview(lines, "plaintext", opts)
-	end
 end
 
 local function lsp_keymaps(bufnr)
-	local opts = { noremap = true, silent = true }
-	local keymap = vim.api.nvim_buf_set_keymap
-	keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-	keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-	keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-	keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-	keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-	keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-	keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", opts)
-	keymap(bufnr, "n", "<leader>li", "<cmd>LspInfo<CR>", opts)
-	keymap(bufnr, "n", "<leader>lI", "<cmd>LspInstallInfo<CR>", opts)
-	keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-	keymap(bufnr, "n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>", opts)
-	keymap(bufnr, "n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<CR>", opts)
-	keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-	keymap(bufnr, "n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-	keymap(bufnr, "n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+	local opts = { noremap = true, silent = true, buffer = bufnr }
+	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+	vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+	vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+	vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
+	vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+	vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
+	vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format({ async = true }) end, opts)
+	vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<CR>", opts)
+	vim.keymap.set("n", "<leader>lI", "<cmd>Mason<CR>", opts)
+	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+	vim.keymap.set("n", "<leader>lj", function() vim.diagnostic.jump({ count = 1, float = true }) end, opts)
+	vim.keymap.set("n", "<leader>lk", function() vim.diagnostic.jump({ count = -1, float = true }) end, opts)
+	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+	vim.keymap.set("n", "<leader>ls", vim.lsp.buf.signature_help, opts)
+	vim.keymap.set("n", "<leader>lq", vim.diagnostic.setloclist, opts)
 end
 
 M.on_attach = function(client, bufnr)
