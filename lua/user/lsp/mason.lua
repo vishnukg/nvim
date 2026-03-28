@@ -14,7 +14,8 @@ local lint_and_format = {
 	"prettierd",
 	"stylua",
 	"yamlfmt",
-	"standardrb",
+	"hadolint",
+	"tflint",
 }
 
 -- =========================
@@ -35,6 +36,7 @@ local lsp_servers = {
 	"csharp_ls",
 	"postgres_lsp",
 	"ruby_lsp",
+	"dockerls",
 }
 
 -- =========================

@@ -156,6 +156,16 @@ M.on_attach = function(client, bufnr)
 		client.server_capabilities.documentFormattingProvider = false
 	end
 
+	-- ruby_lsp handles format on save via its standard addon
+	if client.name == "ruby_lsp" and client.supports_method("textDocument/formatting") then
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			buffer = bufnr,
+			callback = function()
+				vim.lsp.buf.format({ bufnr = bufnr, id = client.id })
+			end,
+		})
+	end
+
 	-- Enable inlay hints if the server supports it
 	if client.server_capabilities.inlayHintProvider and client.name ~= "csharp_ls" then
 		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
