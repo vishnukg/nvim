@@ -22,7 +22,8 @@ brew install \
   ripgrep \
   fd \
   fzf \
-  gnu-sed
+  gnu-sed \
+  ruby-build
 
 # --- Xcode Command Line Tools (provides clang + make) ---
 if ! xcode-select -p &>/dev/null; then
