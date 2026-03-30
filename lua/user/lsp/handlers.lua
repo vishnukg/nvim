@@ -10,22 +10,15 @@ M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
 
 M.setup = function()
-	local signs = {
-
-		{ name = "DiagnosticSignError", text = "" },
-		{ name = "DiagnosticSignWarn", text = "" },
-		{ name = "DiagnosticSignHint", text = "" },
-		{ name = "DiagnosticSignInfo", text = "" },
-	}
-	local sign_texts = {}
-	for _, sign in ipairs(signs) do
-		sign_texts[sign.name] = sign.text
-	end
-
-	local config = {
-		virtual_text = true, -- enable/disable virtual text
+	vim.diagnostic.config({
+		virtual_text = true,
 		signs = {
-			active = sign_texts, -- show signs
+			text = {
+				[vim.diagnostic.severity.ERROR] = "",
+				[vim.diagnostic.severity.WARN]  = "",
+				[vim.diagnostic.severity.HINT]  = "",
+				[vim.diagnostic.severity.INFO]  = "",
+			},
 		},
 		update_in_insert = true,
 		underline = true,
@@ -37,51 +30,11 @@ M.setup = function()
 			header = "",
 			prefix = "",
 		},
-	}
-
-	vim.diagnostic.config(config)
-
-	-- ============================================================================
-	-- WORKAROUND: Fix gopls package rename in Neovim 0.11.6
-	-- Issue: https://github.com/neovim/neovim/issues/37724
-	-- Fixed in: PR #37725 (merged to master, will be in v0.12 or v0.11.7+)
-	-- TODO: Remove this entire block when upgrading to Neovim 0.11.7+ or 0.12+
-	-- ============================================================================
-	local original_fs_rm = vim.fs.rm
-	---@diagnostic disable-next-line: duplicate-set-field
-	vim.fs.rm = function(path, opts)
-		opts = opts or {}
-		-- Use lstat (not stat) to properly detect symlinks and directories
-		-- This is the same fix as the official PR #37725
-		local stat = vim.uv.fs_lstat(path)
-
-		if stat and stat.type == "directory" then
-			-- Recursively delete directory contents (safe for all LSPs)
-			for name, _ in vim.fs.dir(path) do
-				---@diagnostic disable-next-line: param-type-mismatch
-				vim.fs.rm(vim.fs.joinpath(path, name), { recursive = true, force = opts.force })
-			end
-			-- Remove the now-empty directory
-			local ok, err = vim.uv.fs_rmdir(path)
-			if not ok and not opts.force then
-				error(err)
-			end
-		elseif stat then
-			-- For files, use original function (unchanged behavior)
-			original_fs_rm(path, opts)
-		elseif not opts.force then
-			-- Path doesn't exist - let original handle the error
-			original_fs_rm(path, opts)
-		end
-	end
-	-- ============================================================================
-	-- END WORKAROUND
-	-- ============================================================================
-
+	})
 end
 
 local function lsp_keymaps(bufnr)
-	local opts = { noremap = true, silent = true, buffer = bufnr }
+	local opts = { noremap = true, silent = true, buf = bufnr }
 	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
@@ -109,7 +62,7 @@ M.on_attach = function(client, bufnr)
 	end
 
 	-- ruby_lsp handles format on save via its standard addon
-	if client.name == "ruby_lsp" and client.supports_method("textDocument/formatting") then
+	if client.name == "ruby_lsp" and client:supports_method("textDocument/formatting") then
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			buffer = bufnr,
 			callback = function()
