@@ -76,6 +76,11 @@ M.on_attach = function(client, bufnr)
 		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 	end
 
+	-- Enable codelens if the server supports it
+	if client.server_capabilities.codeLensProvider then
+		vim.lsp.codelens.enable(true, { bufnr = bufnr })
+	end
+
 	lsp_keymaps(bufnr)
 	local status_ok, illuminate = pcall(require, "illuminate")
 	if not status_ok then

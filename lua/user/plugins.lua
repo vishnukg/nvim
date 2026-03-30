@@ -195,7 +195,13 @@ return lazy.setup({
 		"GustavEikaas/easy-dotnet.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
 		config = function()
-			require("easy-dotnet").setup()
+			require("easy-dotnet").setup({
+				lsp = {
+					-- Disable plugin's deprecated codelens.refresh() calls.
+					-- Neovim 0.12 handles this via vim.lsp.codelens.enable() in on_attach.
+					auto_refresh_codelens = false,
+				},
+			})
 		end,
 		ft = { "cs", "fs", "vb" },
 	},
