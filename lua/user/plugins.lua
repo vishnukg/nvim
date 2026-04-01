@@ -197,9 +197,11 @@ return lazy.setup({
 		config = function()
 			require("easy-dotnet").setup({
 				lsp = {
-					-- Disable plugin's deprecated codelens.refresh() calls.
-					-- Neovim 0.12 handles this via vim.lsp.codelens.enable() in on_attach.
-					auto_refresh_codelens = false,
+					-- Roslyn LSP disabled: csharp_ls handles all LSP features consistently
+					-- with the rest of the LSP setup (gopls, pyright, etc). Nvim 0.12's
+					-- built-in LSP client covers code actions, diagnostics, code lens,
+					-- completions, references natively.
+					enabled = false,
 				},
 			})
 		end,
