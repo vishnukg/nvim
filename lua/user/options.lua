@@ -43,6 +43,16 @@ local options = {
 }
 vim.opt.shortmess:append("c")
 
+-- Auto-reload buffers when files change on disk (e.g. changed by Copilot)
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+  pattern = "*",
+  callback = function()
+    if vim.fn.mode() ~= "c" then
+      vim.cmd("checktime")
+    end
+  end,
+})
+
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end
