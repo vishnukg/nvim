@@ -121,6 +121,29 @@ keymap("n", "<leader>nt", "<cmd>tabnew<CR>", opts) -- New Tab (empty buffer)
 -- Markdown (render-markdown.nvim)
 keymap("n", "<leader>vm", "<cmd>RenderMarkdown toggle<CR>", opts) -- Toggle Markdown rendering
 
+-- Coverage overlay (andythigpen/nvim-coverage)
+keymap("n", "<leader>cv",  "<cmd>Coverage<CR>",        { noremap = true, silent = true, desc = "Coverage: load & show" })
+keymap("n", "<leader>cvs", "<cmd>CoverageSummary<CR>", { noremap = true, silent = true, desc = "Coverage: summary" })
+keymap("n", "<leader>hcv", "<cmd>CoverageHide<CR>",    { noremap = true, silent = true, desc = "Coverage: hide" })
+keymap("n", "<leader>ccv", "<cmd>CoverageClear<CR>",   { noremap = true, silent = true, desc = "Coverage: clear" })
+
+-- Go: struct tags & code gen via gopher.nvim (run :GoInstallDeps once after install)
+-- Add tags
+keymap("n", "<leader>gaj", "<cmd>GoTagAdd<CR>",          { noremap = true, silent = true, desc = "Go: add json tag" })
+keymap("n", "<leader>gay", "<cmd>GoTagAdd yaml<CR>",     { noremap = true, silent = true, desc = "Go: add yaml tag" })
+keymap("n", "<leader>gax", "<cmd>GoTagAdd xml<CR>",      { noremap = true, silent = true, desc = "Go: add xml tag" })
+keymap("n", "<leader>gae", "<cmd>GoTagAdd env<CR>",      { noremap = true, silent = true, desc = "Go: add env tag" })
+keymap("n", "<leader>gad", "<cmd>GoTagAdd db<CR>",       { noremap = true, silent = true, desc = "Go: add db tag" })
+-- Remove tags
+keymap("n", "<leader>grj", "<cmd>GoTagRm json<CR>",      { noremap = true, silent = true, desc = "Go: remove json tag" })
+keymap("n", "<leader>gry", "<cmd>GoTagRm yaml<CR>",      { noremap = true, silent = true, desc = "Go: remove yaml tag" })
+keymap("n", "<leader>grx", "<cmd>GoTagRm xml<CR>",       { noremap = true, silent = true, desc = "Go: remove xml tag" })
+keymap("n", "<leader>gre", "<cmd>GoTagRm env<CR>",       { noremap = true, silent = true, desc = "Go: remove env tag" })
+keymap("n", "<leader>grd", "<cmd>GoTagRm db<CR>",        { noremap = true, silent = true, desc = "Go: remove db tag" })
+-- Other
+keymap("n", "<leader>gie", "<cmd>GoIfErr<CR>",           { noremap = true, silent = true, desc = "Go: add if err" })
+keymap("n", "<leader>gim", "<cmd>GoImpl<CR>",            { noremap = true, silent = true, desc = "Go: implement interface" })
+
 -- Folding keymaps (mnemonic: <leader>f + action)
 keymap("n", "<leader>ft", "za", opts) -- Fold Toggle at cursor
 keymap("n", "<leader>fC", "zc", opts) -- Fold Close at cursor

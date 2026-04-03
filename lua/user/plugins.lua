@@ -190,6 +190,62 @@ return lazy.setup({
 	-- Bruno API client (.bru syntax highlighting via tree-sitter)
 	{ "kristoferssolo/tree-sitter-bruno" },
 
+	-- Test coverage overlay (green = covered, red = uncovered)
+	-- Workflow: run tests with neotest → <leader>cv to overlay coverage
+	{
+		"andythigpen/nvim-coverage",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("coverage").setup({
+				commands = true,
+				auto_reload = true,
+				highlights = {
+					covered   = { bg = "#004400" },
+					uncovered = { bg = "#440000" },
+				},
+				signs = {
+					covered   = { hl = "CoverageCovered",   text = "▎" },
+					uncovered = { hl = "CoverageUncovered", text = "▎" },
+				},
+				lang = {
+					go = { coverage_file = "coverage.out" },
+				},
+			})
+		end,
+		ft = { "go", "javascript", "typescript", "python" },
+	},
+
+	-- Go: struct tags, iferr, impl, go mod commands.
+	-- Explicitly NOT an LSP tool — no interference with gopls/none-ls/neotest.
+	-- Run :GoInstallDeps once after install to fetch required binaries.
+	{
+		"olexsmir/gopher.nvim",
+		ft = "go",
+		config = function(_, opts)
+			require("gopher").setup(opts)
+			-- Auto-install deps when first Go file opens, only if binaries are missing
+			if vim.fn.executable("gomodifytags") == 0 then
+				vim.api.nvim_create_autocmd("FileType", {
+					pattern = "go",
+					once = true,
+					callback = function()
+						vim.cmd("GoInstallDeps")
+					end,
+				})
+			end
+		end,
+		opts = {
+			commands = {
+				gotests = "gotests", -- installed but unused; testing handled by neotest-golang
+			},
+			gotag = {
+				transform = "camelcase",
+				default_tag = "json",
+				option = nil, -- omitempty should be added explicitly per field, not by default
+			},
+		},
+	},
+
 	-- .NET
 	{
 		"GustavEikaas/easy-dotnet.nvim",
