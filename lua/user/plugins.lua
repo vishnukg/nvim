@@ -208,11 +208,22 @@ return lazy.setup({
 					uncovered = { hl = "CoverageUncovered", text = "▎" },
 				},
 				lang = {
+					-- Go: run `go test -coverprofile=coverage.out ./...`
 					go = { coverage_file = "coverage.out" },
+					-- TypeScript/JavaScript: run `npm run test:coverage` (needs lcov reporter in vitest/jest config)
+					typescript = { coverage_file = "coverage/lcov.info" },
+					javascript = { coverage_file = "coverage/lcov.info" },
+					-- Python: run `coverage run -m pytest && coverage json`
+					python = { coverage_file = ".coverage" },
+					-- Ruby: requires SimpleCov with JSON formatter in spec_helper.rb
+					-- `require 'simplecov'; require 'simplecov-json'; SimpleCov.formatter = SimpleCov::Formatter::JSONFormatter`
+					ruby = { coverage_file = "coverage/coverage.json" },
+					-- C#: run `dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput=TestResults/lcov.info`
+					cs = { coverage_file = "TestResults/lcov.info" },
 				},
 			})
 		end,
-		ft = { "go", "javascript", "typescript", "python" },
+		ft = { "go", "javascript", "typescript", "python", "ruby", "cs" },
 	},
 
 	-- Go: struct tags, iferr, impl, go mod commands.
