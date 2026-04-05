@@ -18,6 +18,7 @@ fi
 echo "Installing dependencies via Homebrew..."
 brew install \
   neovim \
+  tree-sitter \
   tree-sitter-cli \
   ripgrep \
   fd \
