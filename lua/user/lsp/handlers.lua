@@ -35,19 +35,28 @@ end
 
 local function lsp_keymaps(bufnr)
 	local opts = { noremap = true, silent = true, buf = bufnr }
-	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-	vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-	vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-	vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
-	vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-	vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
+
+	-- 0.12 built-in defaults (no explicit mapping needed, listed for reference):
+	--   gd       → go to definition
+	--   gD       → go to declaration
+	--   K        → hover documentation
+	--   gra      → code actions (remapped to gca below)
+	--   grn      → rename symbol
+	--   grr      → references
+	--   gri      → implementations
+	--   grt      → type definition
+	--   grx      → run codelens
+	--   gO       → document symbols
+	--   <C-S>    → signature help (insert mode)
+
+	-- Custom mappings (not covered by 0.12 built-ins, or overriding defaults)
+	vim.keymap.set("n", "gl",  vim.diagnostic.open_float, opts)  -- show diagnostic float
+	vim.keymap.set("n", "gca", vim.lsp.buf.code_action, opts)    -- code actions (prefer over built-in gra)
 	vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format({ async = true }) end, opts)
 	vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<CR>", opts)
 	vim.keymap.set("n", "<leader>lI", "<cmd>Mason<CR>", opts)
-	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 	vim.keymap.set("n", "<leader>lj", function() vim.diagnostic.jump({ count = 1, float = true }) end, opts)
 	vim.keymap.set("n", "<leader>lk", function() vim.diagnostic.jump({ count = -1, float = true }) end, opts)
-	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
 	vim.keymap.set("n", "<leader>ls", vim.lsp.buf.signature_help, opts)
 	vim.keymap.set("n", "<leader>lq", vim.diagnostic.setloclist, opts)
 end
@@ -82,11 +91,6 @@ M.on_attach = function(client, bufnr)
 	end
 
 	lsp_keymaps(bufnr)
-	local status_ok, illuminate = pcall(require, "illuminate")
-	if not status_ok then
-		return
-	end
-	illuminate.on_attach(client)
 end
 
 return M

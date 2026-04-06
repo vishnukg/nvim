@@ -18,8 +18,7 @@ end
 
 return lazy.setup({
 
-	-- Core Lua functions and utilities
-	{ "nvim-lua/popup.nvim", lazy = false },
+	-- Core Lua utilities (plenary needed by telescope/gitsigns)
 	{ "nvim-lua/plenary.nvim", lazy = false },
 
 	-- UI Enhancements
@@ -70,8 +69,7 @@ return lazy.setup({
 	-- Terminal Integration
 	{ "akinsho/toggleterm.nvim", cmd = "ToggleTerm" },
 
-	-- Undo Tree
-	{ "mbbill/undotree", cmd = "UndotreeToggle" },
+	-- Undo Tree: use built-in since 0.12 (:packadd nvim.undotree | :Undotree)
 
 	-- Git Integration
 	{ "tpope/vim-fugitive", lazy = false },
@@ -80,16 +78,9 @@ return lazy.setup({
 	-- Search and Replace
 	{ "windwp/nvim-spectre", cmd = "Spectre" },
 
-	-- Commenting
-	{
-		"numToStr/Comment.nvim",
-		config = function()
-			require("Comment").setup()
-		end,
-		event = { "BufReadPost", "BufNewFile" },
-	},
+	-- Commenting handled by built-in gc/gcc (since nvim 0.10)
 
-	-- Completion Plugins (nvim-cmp and sources)
+	-- Completion Plugins
 	{
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
