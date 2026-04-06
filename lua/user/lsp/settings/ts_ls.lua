@@ -1,6 +1,13 @@
 return {
 	settings = {
 		typescript = {
+			referencesCodeLens = {
+				enabled = true,
+				showOnAllFunctions = true,
+			},
+			implementationsCodeLens = {
+				enabled = true,
+			},
 			inlayHints = {
 				includeInlayParameterNameHints = "all",
 				includeInlayParameterNameHintsWhenArgumentMatchesName = false,
@@ -12,6 +19,13 @@ return {
 			},
 		},
 		javascript = {
+			referencesCodeLens = {
+				enabled = true,
+				showOnAllFunctions = true,
+			},
+			implementationsCodeLens = {
+				enabled = true,
+			},
 			inlayHints = {
 				includeInlayParameterNameHints = "all",
 				includeInlayParameterNameHintsWhenArgumentMatchesName = false,
