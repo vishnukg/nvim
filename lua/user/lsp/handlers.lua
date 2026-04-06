@@ -36,24 +36,21 @@ end
 local function lsp_keymaps(bufnr)
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 
-	-- 0.12 built-in defaults (no explicit mapping needed, listed for reference):
+	-- 0.12 built-in defaults (no explicit mapping needed):
 	--   K        → hover documentation
 	--   gra      → code actions
 	--   grn      → rename symbol
-	--   grr      → references
-	--   gri      → implementations
-	--   grt      → type definition
+	--   grr      → show references
+	--   gri      → go to implementation
+	--   grt      → go to type definition
 	--   grx      → run codelens
-	--   gO       → document symbols
+	--   gO       → list document symbols
 	--   <C-S>    → signature help (insert + select mode)
 
-	-- Custom mappings (not covered by 0.12 built-ins, or overriding defaults)
-	vim.keymap.set("n", "gd",  vim.lsp.buf.definition, opts)     -- go to definition (NOT a 0.12 built-in)
-	vim.keymap.set("n", "gD",  vim.lsp.buf.declaration, opts)    -- go to declaration
-	vim.keymap.set("n", "gI",  vim.lsp.buf.implementation, opts)  -- go to implementation
-	vim.keymap.set("n", "gr",  vim.lsp.buf.references, opts)      -- go to references
-	vim.keymap.set("n", "gca", vim.lsp.buf.code_action, opts)    -- code actions (prefer over built-in gra)
-	vim.keymap.set("n", "gl",  vim.diagnostic.open_float, opts)  -- show diagnostic float
+	-- Custom mappings (no 0.12 built-in equivalent)
+	vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+	vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
 	vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format({ async = true }) end, opts)
 	vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<CR>", opts)
 	vim.keymap.set("n", "<leader>lI", "<cmd>Mason<CR>", opts)
