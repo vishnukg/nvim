@@ -15,9 +15,9 @@ M.setup = function()
 		signs = {
 			text = {
 				[vim.diagnostic.severity.ERROR] = "",
-				[vim.diagnostic.severity.WARN]  = "",
-				[vim.diagnostic.severity.HINT]  = "",
-				[vim.diagnostic.severity.INFO]  = "",
+				[vim.diagnostic.severity.WARN] = "",
+				[vim.diagnostic.severity.HINT] = "",
+				[vim.diagnostic.severity.INFO] = "",
 			},
 		},
 		update_in_insert = true,
@@ -26,7 +26,7 @@ M.setup = function()
 		float = {
 			focusable = true,
 			style = "minimal",
-			source = "always",
+			source = true,
 			header = "",
 			prefix = "",
 		},
@@ -51,11 +51,17 @@ local function lsp_keymaps(bufnr)
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 	vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
-	vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format({ async = true }) end, opts)
+	vim.keymap.set("n", "<leader>fo", function()
+		vim.lsp.buf.format({ async = true })
+	end, opts)
 	vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<CR>", opts)
 	vim.keymap.set("n", "<leader>lI", "<cmd>Mason<CR>", opts)
-	vim.keymap.set("n", "<leader>lj", function() vim.diagnostic.jump({ count = 1, float = true }) end, opts)
-	vim.keymap.set("n", "<leader>lk", function() vim.diagnostic.jump({ count = -1, float = true }) end, opts)
+	vim.keymap.set("n", "<leader>lj", function()
+		vim.diagnostic.jump({ count = 1, float = true })
+	end, opts)
+	vim.keymap.set("n", "<leader>lk", function()
+		vim.diagnostic.jump({ count = -1, float = true })
+	end, opts)
 	vim.keymap.set("n", "<leader>ls", vim.lsp.buf.signature_help, opts)
 	vim.keymap.set("n", "<leader>lq", vim.diagnostic.setloclist, opts)
 end
