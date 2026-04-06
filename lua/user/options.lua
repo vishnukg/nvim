@@ -58,7 +58,8 @@ for k, v in pairs(options) do
 end
 
 vim.opt.whichwrap:append("<,>,[,],h,l")
-vim.opt.foldmethod = "indent"
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldenable = false
 vim.opt.foldlevel = 99
 vim.opt.iskeyword:append("-") -- hyphenated words recognized by searches
