@@ -40,7 +40,7 @@ local function lsp_keymaps(bufnr)
 	--   gd       → go to definition
 	--   gD       → go to declaration
 	--   K        → hover documentation
-	--   gra      → code actions (remapped to gca below)
+	--   gra      → code actions
 	--   grn      → rename symbol
 	--   grr      → references
 	--   gri      → implementations
@@ -51,7 +51,6 @@ local function lsp_keymaps(bufnr)
 
 	-- Custom mappings (not covered by 0.12 built-ins, or overriding defaults)
 	vim.keymap.set("n", "gl",  vim.diagnostic.open_float, opts)  -- show diagnostic float
-	vim.keymap.set("n", "gca", vim.lsp.buf.code_action, opts)    -- code actions (prefer over built-in gra)
 	vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format({ async = true }) end, opts)
 	vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<CR>", opts)
 	vim.keymap.set("n", "<leader>lI", "<cmd>Mason<CR>", opts)
