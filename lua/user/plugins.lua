@@ -31,7 +31,6 @@ return lazy.setup({
 			require("user.nvimtree")
 		end,
 	},
-	{ "nvim-tree/nvim-web-devicons", lazy = false },
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons", opt = true },

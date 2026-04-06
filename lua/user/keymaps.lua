@@ -55,7 +55,7 @@ keymap("v", "p", '"_dP', opts)
 --Telescope mappings
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>fg", ":Telescope live_grep<CR>", opts)
-keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
+
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 
 --NvimTree
@@ -83,11 +83,7 @@ keymap("n", "<leader>gt", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 keymap("n", "<leader>df", ":windo diffthis<CR>", opts)
 
 -- Neotest runner (lazy load neotest)
-local neotest_loaded = false
 local function get_neotest()
-	if not neotest_loaded then
-		neotest_loaded = true
-	end
 	return require("neotest")
 end
 
@@ -112,7 +108,7 @@ keymap("n", "<leader>cpr", "<cmd>CopilotChatReset<CR>", opts)
 
 -- Trouble diagnostics
 keymap("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<CR>", opts)
-keymap("n", "<leader>xw", "<cmd>Trouble diagnostics toggle<CR>", opts)
+
 keymap("n", "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", opts)
 
 -- Tabs
@@ -148,6 +144,6 @@ keymap("n", "<leader>gim", "<cmd>GoImpl<CR>", { noremap = true, silent = true, d
 keymap("n", "<leader>ft", "za", opts) -- Fold Toggle at cursor
 keymap("n", "<leader>fC", "zc", opts) -- Fold Close at cursor
 keymap("n", "<leader>foc", "zo", opts) -- Fold Open at cursor
-keymap("n", "<leader>fo", "zR", opts) -- Fold All open
+keymap("n", "<leader>fO", "zR", opts) -- Fold All open
 keymap("n", "<leader>fc", "zM", opts) -- Fold Close all
 keymap("n", "<leader>fT", "zA", opts) -- Fold Toggle all recursively at cursor
