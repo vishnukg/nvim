@@ -10,6 +10,12 @@ M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
 
 M.setup = function()
+	-- Enable codelens globally. The capability system automatically activates it
+	-- only for clients that advertise codeLensProvider, so no per-buffer guard
+	-- is needed. Doing this in setup() avoids a timing issue where enabling
+	-- per-buffer inside on_attach could miss the attaching client.
+	vim.lsp.codelens.enable(true)
+
 	vim.diagnostic.config({
 		virtual_text = true,
 		signs = {
@@ -91,11 +97,6 @@ M.on_attach = function(client, bufnr)
 	-- Enable inlay hints if the server supports it
 	if client.server_capabilities.inlayHintProvider and client.name ~= "csharp_ls" then
 		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-	end
-
-	-- Enable codelens if the server supports it
-	if client.server_capabilities.codeLensProvider then
-		vim.lsp.codelens.enable(true, { bufnr = bufnr })
 	end
 
 	lsp_keymaps(bufnr)
