@@ -148,7 +148,14 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	nested = true,
 	callback = function()
 		if #vim.api.nvim_list_wins() == 1 and require("nvim-tree.utils").is_nvim_tree_buf() then
-			vim.cmd("quit")
+			local listed = vim.tbl_filter(function(b)
+				return vim.bo[b].buflisted and vim.api.nvim_buf_is_valid(b)
+			end, vim.api.nvim_list_bufs())
+			if #listed > 0 then
+				vim.api.nvim_command("vsplit | buffer " .. listed[1])
+			else
+				vim.cmd("quit")
+			end
 		end
 	end,
 })
