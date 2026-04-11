@@ -49,13 +49,14 @@ local function lsp_keymaps(bufnr)
 	--   grr      → show references
 	--   gri      → go to implementation
 	--   grt      → go to type definition
-	--   grx      → run codelens
+	--   grl      → run codelens
 	--   gO       → list document symbols
 	--   <C-S>    → signature help (insert + select mode)
 
 	-- Custom mappings (no 0.12 built-in equivalent)
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+	vim.keymap.set("n", "grl", vim.lsp.codelens.run, opts)
 	vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
 	vim.keymap.set("n", "gch", vim.lsp.buf.incoming_calls, opts)
 	vim.keymap.set("n", "gth", function() vim.lsp.buf.typehierarchy("supertypes") end, opts)

@@ -181,7 +181,7 @@ return lazy.setup({
 	{ "kristoferssolo/tree-sitter-bruno" },
 
 	-- Test coverage overlay (green = covered, red = uncovered)
-	-- Workflow: run tests with neotest → <leader>cv to overlay coverage
+	-- Workflow: run tests with neotest → gcv to overlay coverage
 	{
 		"andythigpen/nvim-coverage",
 		dependencies = { "nvim-lua/plenary.nvim" },

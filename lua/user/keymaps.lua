@@ -118,7 +118,7 @@ keymap("n", "<leader>nt", "<cmd>tabnew<CR>", opts) -- New Tab (empty buffer)
 keymap("n", "<leader>vm", "<cmd>RenderMarkdown toggle<CR>", opts) -- Toggle Markdown rendering
 
 -- Coverage overlay (andythigpen/nvim-coverage)
-keymap("n", "<leader>cv", "<cmd>Coverage<CR>", { noremap = true, silent = true, desc = "Coverage: load & show" })
+keymap("n", "gcv", "<cmd>Coverage<CR>", { noremap = true, silent = true, desc = "Coverage: load & show" })
 keymap("n", "<leader>cvs", "<cmd>CoverageSummary<CR>", { noremap = true, silent = true, desc = "Coverage: summary" })
 keymap("n", "<leader>hcv", "<cmd>CoverageHide<CR>", { noremap = true, silent = true, desc = "Coverage: hide" })
 keymap("n", "<leader>ccv", "<cmd>CoverageClear<CR>", { noremap = true, silent = true, desc = "Coverage: clear" })
