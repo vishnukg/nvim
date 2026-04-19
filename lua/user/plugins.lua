@@ -123,7 +123,9 @@ return lazy.setup({
 	{
 		"j-hui/fidget.nvim",
 		lazy = false,
-		opts = {},
+		config = function()
+			require("user.fidget")
+		end,
 	},
 
 	-- Testing

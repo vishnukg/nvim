@@ -47,12 +47,12 @@ if is_minitest_project() then
 		adapters,
 		require("neotest-minitest")({
 			test_cmd = function()
-				return vim.tbl_flatten({
+				return {
 					"bundle",
 					"exec",
 					"ruby",
 					"-Itest",
-				})
+				}
 			end,
 		})
 	)
