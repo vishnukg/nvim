@@ -52,26 +52,30 @@ keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap("v", "<A-k>", ":m .-2<CR>==", opts)
 keymap("v", "p", '"_dP', opts)
 
---Telescope mappings
-keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
-keymap("n", "<leader>fg", ":Telescope live_grep<CR>", opts)
+-- FzfLua mappings
+keymap("n", "<leader>ff", ":FzfLua files<CR>", opts)
+keymap("n", "<leader>fg", ":FzfLua live_grep<CR>", opts)
 
-keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
+keymap("n", "<leader>fb", ":FzfLua buffers<CR>", opts)
 
 --NvimTree
 keymap("n", "<C-g>", ":NvimTreeToggle<cr>", opts)
 
---Spectre
+-- Grug-far
 keymap("n", "<leader>sp", function()
-	require("spectre").open()
+	require("grug-far").open()
 end, opts)
 
--- Spectre search current word
+-- Grug-far search current word
 keymap("n", "<leader>sw", function()
-	require("spectre").open_visual({ select_word = true })
+	require("grug-far").open({
+		prefills = {
+			search = vim.fn.expand("<cword>"),
+		},
+	})
 end, opts)
 keymap("n", "<leader>s", function()
-	require("spectre").open_visual()
+	require("grug-far").open()
 end, opts)
 
 -- Toggle Term

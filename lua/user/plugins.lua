@@ -18,7 +18,7 @@ end
 
 return lazy.setup({
 
-	-- Core Lua utilities (plenary needed by telescope/gitsigns)
+	-- Core Lua utilities (plenary needed by grug-far/gitsigns)
 	{ "nvim-lua/plenary.nvim", lazy = false },
 
 	-- UI Enhancements
@@ -48,8 +48,8 @@ return lazy.setup({
 
 	-- Fuzzy Finder
 	{
-		"nvim-telescope/telescope.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
+		"ibhagwan/fzf-lua",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 		lazy = false,
 	},
 
@@ -75,7 +75,14 @@ return lazy.setup({
 	{ "lewis6991/gitsigns.nvim", lazy = false },
 
 	-- Search and Replace
-	{ "windwp/nvim-spectre", cmd = "Spectre" },
+	{
+		"MagicDuck/grug-far.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		lazy = false,
+		config = function()
+			require("grug-far").setup({})
+		end,
+	},
 
 	-- Commenting handled by built-in gc/gcc (since nvim 0.10)
 
@@ -252,9 +259,10 @@ return lazy.setup({
 	-- .NET
 	{
 		"GustavEikaas/easy-dotnet.nvim",
-		dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+		dependencies = { "nvim-lua/plenary.nvim", "ibhagwan/fzf-lua" },
 		config = function()
 			require("easy-dotnet").setup({
+				picker = "fzf",
 				lsp = {
 					-- Roslyn LSP disabled: csharp_ls handles all LSP features consistently
 					-- with the rest of the LSP setup (gopls, pyright, etc). Nvim 0.12's

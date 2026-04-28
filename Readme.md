@@ -40,7 +40,7 @@ A personal Neovim configuration built on [lazy.nvim](https://github.com/folke/la
         ├── treesitter.lua    # Syntax parser config + installed parsers
         ├── nvimtree.lua      # File explorer
         ├── lualine.lua       # Status line
-        ├── telescope.lua     # Fuzzy finder
+        ├── fzf.lua           # fzf-lua setup
         ├── gitsigns.lua      # Git decorations
         ├── fidget.lua        # LSP progress notifications
         ├── toggleterm.lua    # Integrated terminal
@@ -80,8 +80,8 @@ git clone <repo-url> ~/.config/nvim
 |------|---------|---------|
 | [Neovim](https://neovim.io/) v0.11+ | The editor | `brew install neovim` |
 | [tree-sitter CLI](https://github.com/tree-sitter/tree-sitter) v0.26.1+ | Compiles syntax parsers | `brew install tree-sitter` |
-| [ripgrep](https://github.com/BurntSushi/ripgrep) | Telescope live grep | `brew install ripgrep` |
-| [fd](https://github.com/sharkdp/fd) | Fast file search for Telescope | `brew install fd` |
+| [ripgrep](https://github.com/BurntSushi/ripgrep) | fzf-lua live grep | `brew install ripgrep` |
+| [fd](https://github.com/sharkdp/fd) | Fast file search for fzf-lua | `brew install fd` |
 | [fzf](https://github.com/junegunn/fzf) | Fuzzy finding | `brew install fzf` |
 | C compiler (gcc/clang) | Builds Treesitter parsers | Xcode CLT on macOS |
 | [Hack Nerd Font](https://www.nerdfonts.com/) | Icons & special characters | Install via font manager |
@@ -388,9 +388,9 @@ These languages have syntax highlighting via Treesitter but no LSP server or for
 | Key | Action |
 |-----|--------|
 | `<leader>e` | Toggle file tree |
-| `<leader>ff` | Find files (Telescope) |
-| `<leader>fg` | Live grep (Telescope) |
-| `<leader>fb` | Browse open buffers |
+| `<leader>ff` | Find files (fzf-lua) |
+| `<leader>fg` | Live grep (fzf-lua) |
+| `<leader>fb` | Browse open buffers (fzf-lua) |
 
 ### Git
 
@@ -417,4 +417,3 @@ These languages have syntax highlighting via Treesitter but no LSP server or for
 3. **Treesitter** — add the parser name to `parsers_to_install` in `lua/user/treesitter.lua`.
 
 4. **External tools** — if the language requires gems, pip packages, or other system tools outside Mason (like Ruby's `standard` gem), document it in the [External Setup](#-requires-external-setup) section above.
-
