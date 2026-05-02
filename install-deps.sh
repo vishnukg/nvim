@@ -23,6 +23,7 @@ brew install \
   ripgrep \
   fd \
   fzf \
+  git-delta \
   gnu-sed \
   ruby-build
 
@@ -35,6 +36,13 @@ fi
 # --- Font ---
 echo "Installing Fira Code..."
 brew install --cask font-fira-code
+
+# --- Git delta ---
+echo "Configuring git-delta..."
+git config --global core.pager delta
+git config --global interactive.diffFilter "delta --color-only"
+git config --global delta.side-by-side true
+git config --global delta.navigate true
 
 echo ""
 echo "✅ All dependencies installed."
